@@ -1,0 +1,81 @@
+html{
+    height: 100%;
+}
+
+body{
+    background-image: url('../img/background.jpg');
+    font-family: 'Bad Script', cursive;
+    height: 100%;
+}
+
+#app{
+    height: 100%;
+}
+
+.addTodo {
+    height: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+}
+
+.addTodoButton {
+    padding: 3px 0;
+}
+
+.addTodoText {
+    padding: 5px 0;
+}
+
+.todoList{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    height: 90%;
+    overflow-y: scroll;
+}
+
+.todoAppWrapper {
+    margin: 0 auto;
+    width: 90%;
+    height: 100%;
+}
+
+.todo {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    font-size: 25px;
+    width: 100%;
+    line-height: 1.5em;
+    flex-shrink: 0;
+}
+
+.todoNumber {
+    width: 25px;
+    text-align: center;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.todoNumber:after {
+    content: '';
+    display: flex;
+    flex-direction: row;
+    border-right: 1px solid black;
+    height: 100%;
+    width: 1px;
+    position: absolute;
+    top: 0;
+    right: 0px;
+}
+
+.todoText {
+    flex-grow: 1;
+    padding: 0 5px;
+}
+
+.todoRemove {
+    flex-shrink: 0;
+}
