@@ -32,27 +32,31 @@ module.exports = {
 			},
 			{
 				test: /\.css$/,
-				loader: ExtractTextPlugin.extract("style-loader", "css-loader!autoprefixer-loader!"),
-				options: {
-					minimize: true
-				}
+				loader: ExtractTextPlugin.extract({
+					fallbackLoader: "style-loader",
+					loader: [{
+						loader: "css-loader"
+					}, {
+						loader: "autoprefixer-loader"
+					}]
+				})
 			}
 		]
 	},
 	plugins: debug ? [
-			new CopyWebpackPlugin([
-				{
-					from: path.join(__dirname, 'src/index.html'),
-					to: '../build'
-				}
-			]),
-			new ExtractTextPlugin('bundle.css')
-		] : [
-			new webpack.optimize.DedupePlugin(),
-			new webpack.optimize.OccurenceOrderPlugin(),
-			new webpack.optimize.UglifyJsPlugin({
-				mangle: false,
-				sourcemap: false
-			})
-		],
+		new CopyWebpackPlugin([
+			{
+				from: path.join(__dirname, 'src/index.html'),
+				to: '../build'
+			}
+		]),
+		new ExtractTextPlugin('bundle.css')
+	] : [
+		new webpack.optimize.DedupePlugin(),
+		new webpack.optimize.OccurenceOrderPlugin(),
+		new webpack.optimize.UglifyJsPlugin({
+			mangle: false,
+			sourcemap: false
+		})
+	],
 };
