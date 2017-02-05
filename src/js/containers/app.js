@@ -1,10 +1,13 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import TodoList from '../components/todoList';
+
 import * as todoActions from '../actionCreators/todo';
 import * as todoAddActions from '../actionCreators/addTodo';
+
+import TodoList from '../components/todoList';
 import AddTodo from '../components/addTodo';
+import TodoListManager from '../components/todoListManager';
 
 class App extends Component {
 	
@@ -15,6 +18,9 @@ class App extends Component {
 			onAddTodo,
 			onChangeTodo,
 			onChangeTodoText,
+			onToggleTodo,
+			onDeleteAllTodos,
+			onToggleAllTodos,
 			todos,
 			newTodoText
 		} = this.props;
@@ -25,9 +31,14 @@ class App extends Component {
 				         newTodoText={newTodoText}
 				         onAddTodo={onAddTodo}/>
 				<TodoList
-					onChangeTodo = {onChangeTodo}
+					onToggleTodo={onToggleTodo}
+					onChangeTodo={onChangeTodo}
 					todos={todos}
 					onDeleteTodo={onDeleteTodo}/>
+				<TodoListManager
+					onDeleteAllTodos={onDeleteAllTodos}
+					onToggleAllTodos={onToggleAllTodos}
+				/>
 			</div>
 		);
 	}
@@ -41,9 +52,12 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => {
 	return {
 		onDeleteTodo: bindActionCreators(todoActions.onDeleteTodo, dispatch),
+		onDeleteAllTodos: bindActionCreators(todoActions.onDeleteAllTodos, dispatch),
+		onToggleAllTodos: bindActionCreators(todoActions.onToggleAllTodos, dispatch),
 		onAddTodo: bindActionCreators(todoActions.onAddTodo, dispatch),
 		onChangeTodoText: bindActionCreators(todoAddActions.onChangeTodoText, dispatch),
-		onChangeTodo: bindActionCreators(todoActions.onChangeTodo, dispatch)
+		onChangeTodo: bindActionCreators(todoActions.onChangeTodo, dispatch),
+		onToggleTodo: bindActionCreators(todoActions.onToggleTodo, dispatch)
 	}
 };
 

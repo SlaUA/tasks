@@ -1,39 +1,55 @@
-html{
+html {
     height: 100%;
 }
 
-body{
+body {
     background-image: url('../img/background.jpg');
     font-family: 'Bad Script', cursive;
     height: 100%;
 }
 
-#app{
+input:focus, textarea:focus, keygen:focus, select:focus {
+    outline-offset: 0;
+}
+
+:focus {
+    outline: transparent auto 0;
+}
+
+#app {
     height: 100%;
 }
 
 .addTodo {
-    height: 10%;
+    height: 15%;
     display: flex;
-    flex-direction: column;
-    align-items: stretch;
+    flex-direction: row;
+    align-items: center;
     justify-content: center;
+    flex-shrink: 0;
 }
 
 .addTodoButton {
-    padding: 3px 0;
+    padding: 3px 5px;
+    max-height: 30px;
+    height: 30px;
 }
 
 .addTodoText {
-    padding: 5px 0;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    max-height: 30px;
+    height: 30px;
 }
 
-.todoList{
+.todoList {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    height: 90%;
-    overflow-y: scroll;
+    height: 70%;
+    overflow-y: auto;
+    flex-shrink: 0;
 }
 
 .todoAppWrapper {
@@ -52,6 +68,10 @@ body{
     flex-shrink: 0;
 }
 
+.todo[data-done="true"] .todoText {
+    text-decoration: line-through
+}
+
 .todoNumber {
     width: 25px;
     text-align: center;
@@ -68,7 +88,7 @@ body{
     width: 1px;
     position: absolute;
     top: 0;
-    right: 0px;
+    right: 0;
 }
 
 .todoText {
@@ -78,4 +98,21 @@ body{
 
 .todoRemove {
     flex-shrink: 0;
+}
+
+.allTodosManager{
+    height: 15%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.deleteAllTodos, .toggleAllTodos{
+    max-height: 30px;
+    height: 30px;
+    width: 50%;
+    text-align: center;
+    line-height: normal;
 }
