@@ -1,13 +1,12 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-
 import * as todoActions from '../actionCreators/todo';
 import * as todoAddActions from '../actionCreators/addTodo';
-
 import TodoList from '../components/todoList';
 import AddTodo from '../components/addTodo';
 import TodoListManager from '../components/todoListManager';
+import {Link} from 'react-router';
 
 class App extends Component {
 	
@@ -39,6 +38,7 @@ class App extends Component {
 					onDeleteAllTodos={onDeleteAllTodos}
 					onToggleAllTodos={onToggleAllTodos}
 				/>
+				<Link to={'/todo/12'}>aboutTodo</Link>
 			</div>
 		);
 	}

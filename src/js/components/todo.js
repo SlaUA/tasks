@@ -18,12 +18,13 @@ export default class Todo extends Component {
 		} = this.props;
 		
 		return (
-			<div className="todo" data-done={this.props.isDone} onClick={this.props.onToggleTodo.bind(null, this.props.id)}>
+			<div className="todo" data-done={this.props.isDone} >
 				<div className="todoNumber">{number + 1}</div>
 				<div className="todoText"
 				     onClick={
 					     this.props.onChangeTodo.bind(null, this.props.id, 'blah')
 				     }>{todoText}</div>
+				<div onClick={this.props.onToggleTodo.bind(null, this.props.id)}></div>
 				<div className="todoRemove" onClick={this.props.onDeleteTodo.bind(null, this.props.id)}>&#10006;</div>
 			</div>
 		);
