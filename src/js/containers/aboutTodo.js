@@ -5,11 +5,13 @@ import {bindActionCreators} from 'redux';
 class aboutTodo extends Component {
 	
 	render() {
+		
 		let {todos} = this.props,
-			{id} = this.props.routeParams;
+			currentTodo = todos.find((todo)=>todo.id === Number(this.props.routeParams.id));
 		return (
 			<div className="aboutWrapper">
-				todoId is: {id}
+				<div>todo's id is: {currentTodo.id}</div>
+				<div>todo's text is: {currentTodo.text}</div>
 			</div>
 		);
 	}

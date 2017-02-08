@@ -1,4 +1,5 @@
 import * as todoActions from '../constants/todo';
+import {push} from 'react-router-redux';
 
 export function onDeleteTodo(todoId) {
 	
@@ -20,13 +21,10 @@ export function onAddTodo(text) {
 	}
 }
 
-export function onChangeTodo(id, text) {
+export function onShowTodoInfo(id) {
 	
 	return function (dispatch) {
-		//dispatch({
-		//	type: todoActions.CHANGE_TODO,
-		//	payload: {id,text}
-		//});
+		dispatch(push('/todo/' + id));
 	}
 }
 
@@ -47,7 +45,6 @@ export function onDeleteAllTodos() {
 		});
 	}
 }
-
 
 export function onToggleAllTodos() {
 	return function (dispatch) {

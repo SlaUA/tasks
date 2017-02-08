@@ -2,7 +2,6 @@ import React, {
 	PropTypes,
 	Component
 } from 'react';
-import Todo from './todo';
 
 export default class TodoListManager extends Component {
 	

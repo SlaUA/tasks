@@ -5,11 +5,6 @@ import React, {
 
 export default class Todo extends Component {
 	
-	onChangeTodoText() {
-		
-		this.props.onChangeTodo.bind(this.props.id, 'blah');
-	}
-	
 	render() {
 		
 		const {
@@ -22,7 +17,7 @@ export default class Todo extends Component {
 				<div className="todoNumber">{number + 1}</div>
 				<div className="todoText"
 				     onClick={
-					     this.props.onChangeTodo.bind(null, this.props.id, 'blah')
+					     this.props.onShowTodoInfo.bind(null, this.props.id)
 				     }>{todoText}</div>
 				<div onClick={this.props.onToggleTodo.bind(null, this.props.id)}></div>
 				<div className="todoRemove" onClick={this.props.onDeleteTodo.bind(null, this.props.id)}>&#10006;</div>
@@ -37,6 +32,6 @@ Todo.propTypes = {
 	isDone: PropTypes.bool.isRequired,
 	number: PropTypes.number.isRequired,
 	onDeleteTodo: PropTypes.func.isRequired,
-	onChangeTodo: PropTypes.func.isRequired,
+	onShowTodoInfo: PropTypes.func.isRequired,
 	onToggleTodo: PropTypes.func.isRequired
 };

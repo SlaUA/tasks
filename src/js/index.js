@@ -8,12 +8,14 @@ import AboutTodo from './containers/aboutTodo';
 import '../styles/reset.css';
 import '../styles/index.css';
 import {IndexRoute, Router, Route, browserHistory} from 'react-router';
+import { syncHistoryWithStore } from 'react-router-redux';
 
 const store = storeConfig();
+const history = syncHistoryWithStore(browserHistory, store);
 
 render(
 	<Provider store={store}>
-		<Router history={browserHistory}>
+		<Router history={history}>
 			<Route path="/" component={WholeContainer}>
 				<IndexRoute component={App}/>
 				<Route path="todo/:id" component={AboutTodo}/>
