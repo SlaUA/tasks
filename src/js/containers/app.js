@@ -6,7 +6,6 @@ import * as todoAddActions from '../actionCreators/addTodo';
 import TodoList from '../components/todoList';
 import AddTodo from '../components/addTodo';
 import TodoListManager from '../components/todoListManager';
-import {Link} from 'react-router';
 
 class App extends Component {
 	

@@ -1,9 +1,9 @@
-import * as todoActions from '../constants/todo';
+import * as addTodoActions from '../constants/addTodo';
 
 export function onChangeTodoText(text) {
 	return function (dispatch) {
 		dispatch({
-			type: todoActions.CHANGE_TEXT,
+			type: addTodoActions.CHANGE_TEXT,
 			payload: text
 		});
 	}

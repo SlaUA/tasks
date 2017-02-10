@@ -1,4 +1,4 @@
-import * as todoActions from '../constants/todo';
+import * as addTodoActions from '../constants/addTodo';
 
 const initialState = {
 	newTodoText: ''
@@ -8,13 +8,13 @@ export default (state = initialState, action) => {
 	
 	switch (action.type) {
 
-		case todoActions.CHANGE_TEXT:
+		case addTodoActions.CHANGE_TEXT:
 			return {
 				...state,
 				newTodoText: action.payload
 			};
 		
-		case todoActions.CLEAR_TEXT:
+		case addTodoActions.CLEAR_TEXT:
 			
 			return {
 				...state,
