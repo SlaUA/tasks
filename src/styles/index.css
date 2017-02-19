@@ -37,14 +37,25 @@ input:focus, textarea:focus, keygen:focus, select:focus {
     padding: 3px 5px;
     max-height: 30px;
     height: 30px;
+    background: transparent;
+    border: 1px solid green;
+    border-radius: 3px;
+    color: black;
+    font-size: 14px;
 }
 
 .addTodoText {
-    padding: 0;
+    padding: 0 0 0 5px;
     margin: 0;
     border: 0;
     max-height: 30px;
     height: 30px;
+    background: rgba(255,255,255,0.8);
+}
+
+.addTodoText::-webkit-input-placeholder {
+    color:black;
+    font-size: 14px;
 }
 
 .todoList {
@@ -54,6 +65,13 @@ input:focus, textarea:focus, keygen:focus, select:focus {
     height: 70%;
     overflow-y: auto;
     flex-shrink: 0;
+    border-radius: 5px;
+    background: linear-gradient(to top, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0) 5%),linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0) 5%);
+}
+
+.todoList::-webkit-scrollbar {
+    width: 0px;  /* remove scrollbar space */
+    background: transparent;  /* optional: just make scrollbar invisible */
 }
 
 .todoAppWrapper {
@@ -100,8 +118,45 @@ input:focus, textarea:focus, keygen:focus, select:focus {
     padding: 0 5px;
 }
 
+[for*="todoToggle_"]{
+    display: inline-block;
+    align-self: center;
+    flex-shrink: 0;
+    width: 35px;
+    height: 100%;
+    position: relative;
+}
+
+[for*="todoToggle_"]:before{
+    content: '';
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    border: 1px solid black;
+}
+
+[data-done="true"] [for*="todoToggle_"]:after{
+    display: inline-block;
+    align-self: center;
+    content: '';
+    flex-shrink: 0;
+    width: 35px;
+    background-image: url('../img/checkmark.png');
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.todoToggle{
+    display: none;
+}
+
 .todoRemove {
     flex-shrink: 0;
+    width: 20px;
 }
 
 .allTodosManager {

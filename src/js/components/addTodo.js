@@ -23,7 +23,7 @@ export default class AddTodo extends Component {
 				       value={newTodoText}
 				       type="text"/>
 				<button className="addTodoButton" onClick={this.onAddTodoClick.bind(this)}>
-					Добавить!
+					Добавить
 				</button>
 			</div>
 		);

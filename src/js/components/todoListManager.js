@@ -9,8 +9,8 @@ export default class TodoListManager extends Component {
 		const {onDeleteAllTodos, onToggleAllTodos} = this.props;
 		return (
 			<div className="allTodosManager">
-				<div className="deleteAllTodos" onClick={onDeleteAllTodos}>Удалить все!</div>
-				<div className="toggleAllTodos" onClick={onToggleAllTodos}>Инвертировать все!</div>
+				<div className="deleteAllTodos" onClick={onDeleteAllTodos}>Удалить все</div>
+				<div className="toggleAllTodos" onClick={onToggleAllTodos}>Инвертировать все</div>
 			</div>
 		)
 	}
