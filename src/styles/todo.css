@@ -1,0 +1,48 @@
+@keyframes show {
+    from {opacity:0;}
+    to {opacity: 1;}
+}
+
+.todo {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    font-size: 25px;
+    width: 100%;
+    line-height: 1.5em;
+    flex-shrink: 0;
+    animation: show 0.2s linear 0s;
+}
+
+.todo[data-done="true"] .todoText {
+    text-decoration: line-through
+}
+
+.todoNumber {
+    width: 25px;
+    text-align: center;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.todoNumber:after {
+    content: '';
+    display: flex;
+    flex-direction: row;
+    border-right: 1px solid black;
+    height: 100%;
+    width: 1px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.todoText {
+    flex-grow: 1;
+    padding: 0 5px;
+}
+
+.todoRemove {
+    flex-shrink: 0;
+    width: 20px;
+}

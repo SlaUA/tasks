@@ -2,6 +2,7 @@ import React, {
 	PropTypes,
 	Component
 } from 'react';
+import '../../styles/todo.css';
 
 export default class Todo extends Component {
 	
@@ -22,9 +23,9 @@ export default class Todo extends Component {
 					<input 
 					id={'todoToggle_'+(number+1)}
 					type="checkbox" 
-					className="todoToggle" 
+					className="todoToggle customCheckbox"
 					onChange={this.props.onToggleTodo.bind(null, this.props.id)} />
-					<label htmlFor={'todoToggle_'+(number+1)}/>
+					<label className="customCheckboxLabel" htmlFor={'todoToggle_'+(number+1)}/>
 				</div>
 				<div className="todoRemove" onClick={this.props.onDeleteTodo.bind(null, this.props.id)}>&#10006;</div>
 			</div>

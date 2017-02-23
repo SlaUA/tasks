@@ -1,0 +1,42 @@
+.aboutWrapper {
+    height: 100%;
+    font-size: 120%;
+}
+
+.aboutHeader {
+    height: 10%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    font-size: 2em;
+}
+
+.aboutTodoText {
+    display: block;
+    width: 100%;
+    border: none;
+    padding: 0;
+    flex-grow: 1;
+    resize: none;
+    font-family: 'Bad Script', cursive;
+    font-size: 18px;
+}
+
+.aboutSaveChanges {
+    width: 25%;
+    text-align: center;
+    padding: 10px 0;
+    margin: 10px auto;
+    flex-shrink: 0;
+}
+
+.aboutBody {
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+}
+
+.aboutTodoDone {
+    margin-top: 10px;
+}

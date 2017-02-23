@@ -1,0 +1,33 @@
+.addTodo {
+    height: 15%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.addTodoButton {
+    padding: 3px 5px;
+    max-height: 30px;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid green;
+    border-radius: 3px;
+    color: black;
+    font-size: 14px;
+}
+
+.addTodoText {
+    padding: 0 0 0 5px;
+    margin: 0;
+    border: 0;
+    max-height: 30px;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.addTodoText::-webkit-input-placeholder {
+    color: black;
+    font-size: 14px;
+}

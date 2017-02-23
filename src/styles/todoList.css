@@ -1,0 +1,14 @@
+.todoList {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    height: 70%;
+    overflow-y: auto;
+    flex-shrink: 0;
+    border-radius: 5px;
+}
+
+.todoList::-webkit-scrollbar {
+    width: 0; /* remove scrollbar space */
+    background: transparent; /* optional: just make scrollbar invisible */
+}

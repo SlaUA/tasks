@@ -2,6 +2,7 @@ import React, {
 	PropTypes,
 	Component
 } from 'react';
+import '../../styles/addTodo.css';
 
 export default class AddTodo extends Component {
 	

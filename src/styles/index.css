@@ -3,9 +3,13 @@ html {
 }
 
 body {
-    background-image: url('../img/background.jpg');
+    background-image: url('../img/noteEffect.png'), url('../img/background.jpg');
+    background-repeat: repeat-y, repeat;
+    background-position: 104% top, center;
     font-family: 'Bad Script', cursive;
     height: 100%;
+    width: 80%;
+    margin: 0 auto;
 }
 
 input:focus, textarea:focus, keygen:focus, select:focus {
@@ -24,101 +28,11 @@ input:focus, textarea:focus, keygen:focus, select:focus {
     height: 100%;
 }
 
-.addTodo {
-    height: 15%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-}
-
-.addTodoButton {
-    padding: 3px 5px;
-    max-height: 30px;
-    height: 30px;
-    background: transparent;
-    border: 1px solid green;
-    border-radius: 3px;
-    color: black;
-    font-size: 14px;
-}
-
-.addTodoText {
-    padding: 0 0 0 5px;
-    margin: 0;
-    border: 0;
-    max-height: 30px;
-    height: 30px;
-    background: rgba(255,255,255,0.8);
-}
-
-.addTodoText::-webkit-input-placeholder {
-    color:black;
-    font-size: 14px;
-}
-
-.todoList {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    height: 70%;
-    overflow-y: auto;
-    flex-shrink: 0;
-    border-radius: 5px;
-    background: linear-gradient(to top, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0) 5%),linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0) 5%);
-}
-
-.todoList::-webkit-scrollbar {
-    width: 0px;  /* remove scrollbar space */
-    background: transparent;  /* optional: just make scrollbar invisible */
-}
-
 .todoAppWrapper {
-    margin: 0 auto;
-    width: 90%;
     height: 100%;
 }
 
-.todo {
-    display: flex;
-    flex-direction: row;
-    align-items: stretch;
-    font-size: 25px;
-    width: 100%;
-    line-height: 1.5em;
-    flex-shrink: 0;
-}
-
-.todo[data-done="true"] .todoText {
-    text-decoration: line-through
-}
-
-.todoNumber {
-    width: 25px;
-    text-align: center;
-    flex-shrink: 0;
-    position: relative;
-}
-
-.todoNumber:after {
-    content: '';
-    display: flex;
-    flex-direction: row;
-    border-right: 1px solid black;
-    height: 100%;
-    width: 1px;
-    position: absolute;
-    top: 0;
-    right: 0;
-}
-
-.todoText {
-    flex-grow: 1;
-    padding: 0 5px;
-}
-
-[for*="todoToggle_"]{
+.customCheckboxLabel {
     display: inline-block;
     align-self: center;
     flex-shrink: 0;
@@ -127,7 +41,7 @@ input:focus, textarea:focus, keygen:focus, select:focus {
     position: relative;
 }
 
-[for*="todoToggle_"]:before{
+.customCheckboxLabel:before {
     content: '';
     width: 25px;
     height: 25px;
@@ -138,40 +52,17 @@ input:focus, textarea:focus, keygen:focus, select:focus {
     border: 1px solid black;
 }
 
-[data-done="true"] [for*="todoToggle_"]:after{
+[data-done="true"] .customCheckboxLabel:after {
     display: inline-block;
     align-self: center;
     content: '';
     flex-shrink: 0;
     width: 35px;
-    background-image: url('../img/checkmark.png');
+    background: url('../img/checkmark.png') no-repeat;
     height: 100%;
-    background-repeat: no-repeat;
     background-size: contain;
 }
 
-.todoToggle{
+.customCheckbox {
     display: none;
-}
-
-.todoRemove {
-    flex-shrink: 0;
-    width: 20px;
-}
-
-.allTodosManager {
-    height: 15%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-}
-
-.deleteAllTodos, .toggleAllTodos {
-    max-height: 30px;
-    height: 30px;
-    width: 50%;
-    text-align: center;
-    line-height: normal;
 }

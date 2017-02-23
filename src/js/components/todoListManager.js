@@ -2,6 +2,7 @@ import React, {
 	PropTypes,
 	Component
 } from 'react';
+import '../../styles/todoManager.css';
 
 export default class TodoListManager extends Component {
 	

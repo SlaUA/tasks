@@ -2,8 +2,8 @@ import * as aboutTodoAction from '../constants/aboutTodo';
 import * as todoAppActions from '../constants/todoApp';
 
 const initialState = {
-	todoText: '',
-	isDone: false
+	todoText: null,
+	isDone: null
 };
 
 export default (state = initialState, action) => {

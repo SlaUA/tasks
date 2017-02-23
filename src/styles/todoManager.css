@@ -1,0 +1,17 @@
+.allTodosManager {
+    height: 15%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 140%;
+}
+
+.deleteAllTodos, .toggleAllTodos {
+    max-height: 30px;
+    height: 30px;
+    width: 50%;
+    text-align: center;
+    line-height: normal;
+}

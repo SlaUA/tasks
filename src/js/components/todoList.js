@@ -3,6 +3,7 @@ import React, {
 	Component
 } from 'react';
 import Todo from './todo';
+import '../../styles/todoList.css';
 
 export default class TodoList extends Component {
 	
