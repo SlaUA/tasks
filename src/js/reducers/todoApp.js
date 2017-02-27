@@ -7,11 +7,11 @@ const initialState = {
     },
 
     todos: [
-        {
-            id: Date.now(),
-            text: 'Learn redux with react',
-            isDone: false
-        }
+        // {
+        //     id: Date.now(),
+        //     text: 'Learn redux with react',
+        //     isDone: false
+        // }
     ]
 };
 
@@ -27,7 +27,7 @@ export default (state = initialState, action) => {
                     ...state.todos,
                     {
                         id: Date.now(),
-                        text: (action.payload || 'Example text'),
+                        text: (action.payload || 'Новая задача'),
                         isDone: false
                     }
                 ]

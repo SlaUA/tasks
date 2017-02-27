@@ -27,7 +27,7 @@ class aboutTodo extends Component {
                               value={todoText}
                               onChange={this.onChangeText.bind(this)}/>
 
-                    <div className="aboutTodoDone">
+                    <div className="aboutTodoDone" data-done={isCheckedTodo}>
                         <span>Отметить как выполненное:</span>
 
                         <input
