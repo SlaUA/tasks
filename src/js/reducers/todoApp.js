@@ -6,13 +6,7 @@ const initialState = {
         return this.todos.map((todo) => todo.id).indexOf(todoId);
     },
 
-    todos: [
-        // {
-        //     id: Date.now(),
-        //     text: 'Learn redux with react',
-        //     isDone: false
-        // }
-    ]
+    todos: []
 };
 
 export default (state = initialState, action) => {
@@ -96,6 +90,14 @@ export default (state = initialState, action) => {
                     })])
                     .concat(state.todos.slice(index + 1))
             };
+
+        case todoActions.LOADED_ALL_TODOS:
+
+            return {
+                ...state,
+                todos: action.payload
+            };
+
         default:
             return state;
     }

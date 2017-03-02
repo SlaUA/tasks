@@ -55,7 +55,8 @@ const mapDispatchToProps = (dispatch) => {
         onAddTodo: bindActionCreators(todoActions.onAddTodo, dispatch),
         onChangeTodoText: bindActionCreators(todoAddActions.onChangeTodoText, dispatch),
         onShowTodoInfo: bindActionCreators(todoActions.onShowTodoInfo, dispatch),
-        onToggleTodo: bindActionCreators(todoActions.onToggleTodo, dispatch)
+        onToggleTodo: bindActionCreators(todoActions.onToggleTodo, dispatch),
+        onLoadAllTodos: bindActionCreators(todoActions.loadTodos, dispatch)
     }
 };
 
