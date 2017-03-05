@@ -14,16 +14,14 @@ export default (state = initialState, action) => {
     let index;
 
     switch (action.type) {
+
         case todoActions.ADD_TODO:
+
             return {
                 ...state,
                 todos: [
                     ...state.todos,
-                    {
-                        id: Date.now(),
-                        text: (action.payload || 'Новая задача'),
-                        isDone: false
-                    }
+                    action.payload
                 ]
             };
 

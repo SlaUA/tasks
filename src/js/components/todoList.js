@@ -14,6 +14,7 @@ export default class TodoList extends Component {
 				<Todo key={todo.id}
 				      number={index}
 				      id={todo.id}
+				      _id = {todo._id.$oid}
 				      isDone={todo.isDone}
 				      todoText={todo.text}
 				      onShowTodoInfo={onShowTodoInfo}

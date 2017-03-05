@@ -24,10 +24,10 @@ export default class Todo extends Component {
 					id={'todoToggle_'+(number+1)}
 					type="checkbox" 
 					className="todoToggle customCheckbox"
-					onChange={this.props.onToggleTodo.bind(null, this.props.id)} />
+					onChange={this.props.onToggleTodo.bind(null, {isDone: this.props.isDone, _id: this.props._id, id: this.props.id})} />
 					<label className="customCheckboxLabel" htmlFor={'todoToggle_'+(number+1)}/>
 				</div>
-				<div className="todoRemove" onClick={this.props.onDeleteTodo.bind(null, this.props.id)}>&#10006;</div>
+				<div className="todoRemove" onClick={this.props.onDeleteTodo.bind(null, {_id: this.props._id, id: this.props.id})}>&#10006;</div>
 			</div>
 		);
 	}
@@ -36,6 +36,7 @@ export default class Todo extends Component {
 Todo.propTypes = {
 	todoText: PropTypes.string.isRequired,
 	id: PropTypes.number.isRequired,
+	_id: PropTypes.string.isRequired,
 	isDone: PropTypes.bool.isRequired,
 	number: PropTypes.number.isRequired,
 	onDeleteTodo: PropTypes.func.isRequired,
