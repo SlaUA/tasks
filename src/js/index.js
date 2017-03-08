@@ -19,7 +19,7 @@ render(
 			<Route path="/" component={WholeContainer}>
 				<IndexRoute component={App}/>
 				<Route path="todo/:id" component={AboutTodo}/>
-				<Route path="*" component={AboutTodo}/>
+				<Route path="*" component={App}/>
 			</Route>
 		</Router>
 	</Provider>,

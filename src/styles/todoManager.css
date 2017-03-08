@@ -9,9 +9,11 @@
 }
 
 .deleteAllTodos, .toggleAllTodos {
-    max-height: 30px;
-    height: 30px;
     width: 50%;
     text-align: center;
     line-height: normal;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    align-content: stretch;
+    white-space: nowrap;
 }
