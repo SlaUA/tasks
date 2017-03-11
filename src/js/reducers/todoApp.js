@@ -52,14 +52,14 @@ export default (state = initialState, action) => {
                     .concat(state.todos.slice(index + 1))
             };
 
-        case todoActions.TOGGLE_ALL_TODOS:
+        case todoActions.DONE_ALL_TODOS:
 
             return {
                 ...state,
                 todos: state.todos.map((todo) => {
                     return {
                         ...todo,
-                        isDone: !todo.isDone
+                        isDone: true
                     }
                 })
             };
@@ -78,6 +78,7 @@ export default (state = initialState, action) => {
             if (!~index) {
                 return state;
             }
+
             return {
                 ...state,
                 todos: state.todos

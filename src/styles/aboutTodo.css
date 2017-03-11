@@ -10,6 +10,7 @@
     text-align: center;
     display: flex;
     font-size: 2em;
+    padding-top: 5%;
 }
 
 .aboutTodoText {
@@ -21,20 +22,38 @@
     resize: none;
     font-family: 'Bad Script', cursive;
     font-size: 18px;
+    background: rgba(255,255,255,0.7);
 }
 
 .aboutSaveChanges {
-    width: 25%;
     text-align: center;
-    padding: 10px 0;
     margin: 10px auto;
     flex-shrink: 0;
+    padding: 10px;
+    background-color: #3F8ABF;
+    border: 0 solid #326E99;
+    border-bottom-width: 3px;
+    box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.1) inset;
+    color: #FFFFFF;
+    border-radius: 6px;
+    cursor: pointer;
+    display: inline-block;
+    font-style: normal;
+    overflow: hidden;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    transition: all 200ms ease-in-out 0s;
+    white-space: nowrap;
+    font-family: Helvetica,Arial,sans-serif;
+    font-weight: 700;
+    font-size: 18px;
 }
 
 .aboutBody {
     height: 200px;
     display: flex;
     flex-direction: column;
+    padding-top: 5%;
 }
 
 .aboutTodoDone {

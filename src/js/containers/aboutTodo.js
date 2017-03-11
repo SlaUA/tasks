@@ -15,12 +15,13 @@ class aboutTodo extends Component {
 
         let {todos} = this.props,
             currentTodo = todos.find((todo) => todo.id === Number(this.props.routeParams.id)),
+			_id = currentTodo._id.$oid,
             todoText = this.props.todoText === null ? currentTodo.text : this.props.todoText,
             isCheckedTodo = this.props.isDone === null ? currentTodo.isDone : this.props.isDone;
 
         return (
             <div className="aboutWrapper">
-                <div className="aboutHeader">Change todo</div>
+                <div className="aboutHeader">Изменить запись</div>
                 <div className="aboutBody">
 
                     <textarea className="aboutTodoText"
@@ -28,7 +29,7 @@ class aboutTodo extends Component {
                               onChange={this.onChangeText.bind(this)}/>
 
                     <div className="aboutTodoDone" data-done={isCheckedTodo}>
-                        <span>Отметить как выполненное:</span>
+                        <span>Отметить как выполненную:</span>
 
                         <input
                             id="aboutIsDone"
@@ -43,6 +44,7 @@ class aboutTodo extends Component {
                            className="aboutSaveChanges"
                            onClick={this.props.onChangeTodo.bind(this, {
                                id: currentTodo.id,
+							   _id: _id,
                                text: todoText,
                                isDone: isCheckedTodo
                            })}/>

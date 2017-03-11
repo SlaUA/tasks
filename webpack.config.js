@@ -12,6 +12,10 @@ module.exports = {
 		path: path.join(__dirname, '/build'),
 		filename: 'bundle.js'
 	},
+	devServer: {
+		port: 8080,
+		historyApiFallback: true
+	},
 	module: {
 		loaders: [
 			{
@@ -44,23 +48,23 @@ module.exports = {
 		]
 	},
 	plugins: debug ? [
-		new CopyWebpackPlugin([
-			{
-				from: path.join(__dirname, 'src/index.html'),
-				to: '../build'
-			},
-			{
-				from: path.join(__dirname, 'src/img/favicon.ico'),
-				to: '../build'
-			}
-		]),
-		new ExtractTextPlugin('bundle.css')
-	] : [
-		new webpack.optimize.DedupePlugin(),
-		new webpack.optimize.OccurenceOrderPlugin(),
-		new webpack.optimize.UglifyJsPlugin({
-			mangle: false,
-			sourcemap: false
-		})
-	],
+			new CopyWebpackPlugin([
+				{
+					from: path.join(__dirname, 'src/index.html'),
+					to: '../build'
+				},
+				{
+					from: path.join(__dirname, 'src/img/favicon.ico'),
+					to: '../build'
+				}
+			]),
+			new ExtractTextPlugin('bundle.css')
+		] : [
+			new webpack.optimize.DedupePlugin(),
+			new webpack.optimize.OccurenceOrderPlugin(),
+			new webpack.optimize.UglifyJsPlugin({
+				mangle: false,
+				sourcemap: false
+			})
+		],
 };
