@@ -4,14 +4,20 @@
   "description": "Todo app with react/redux",
   "main": "webpack.config.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --content-base build/ --inline --hot",
-    "build": "webpack"
+    "build": "webpack",
+    "go": "node"
   },
   "author": "Slava Lubenets wenzelua@gmail.com",
   "license": "ISC",
   "dependencies": {
     "babel-preset-stage-2": "^6.22.0",
+    "body-parser": "^1.17.1",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.15.2",
+    "express-session": "^1.15.1",
+    "mongoose": "^4.8.7",
+    "passport": "^0.3.2",
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
     "react-redux": "^5.0.2",
@@ -31,6 +37,7 @@
     "css-loader": "^0.26.1",
     "extract-text-webpack-plugin": "^2.0.0-rc.2",
     "file-loader": "^0.10.0",
+    "morgan": "^1.8.1",
     "style-loader": "^0.13.1",
     "webpack": "^2.2.1"
   }
