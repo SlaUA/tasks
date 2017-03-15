@@ -3,6 +3,9 @@ import * as todoActions from '../actionCreators/todo';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import LoadSpinner from '../components/loadSpinner';
+import App from '../containers/app';
+import AboutTodo from '../containers/aboutTodo';
+import {Route} from 'react-router-dom';
 
 class WholeContainer extends Component {
 
@@ -15,10 +18,15 @@ class WholeContainer extends Component {
     render() {
 
         const {isVisible} = this.props;
+
         return (
             <div className="wholeWrapper">
-                {this.props.children}
-                <LoadSpinner isVisible={isVisible}/>
+                <div>
+                    {this.props.children}
+                    <LoadSpinner isVisible={isVisible}/>
+                </div>
+                <Route exact path="/" component={App}/>
+                <Route path="/todo/:id" component={AboutTodo}/>
             </div>
         );
     }

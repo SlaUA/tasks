@@ -13,6 +13,7 @@ let express = require('express'),
 // mongoose.connect(dbConfig.url);
 
 app.set('view engine', 'ejs');
+
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));

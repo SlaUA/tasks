@@ -14,7 +14,7 @@ class aboutTodo extends Component {
     render() {
 
         let {todos} = this.props,
-            currentTodo = todos.find((todo) => todo.id === Number(this.props.routeParams.id)),
+            currentTodo = todos.find((todo) => todo.id === Number(this.props.match.params.id)),
 			_id = currentTodo._id.$oid,
             todoText = this.props.todoText === null ? currentTodo.text : this.props.todoText,
             isCheckedTodo = this.props.isDone === null ? currentTodo.isDone : this.props.isDone;
