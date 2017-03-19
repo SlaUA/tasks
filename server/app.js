@@ -2,30 +2,52 @@ let express = require('express'),
 	app = express(),
 	port = 3000,
 	bodyParser = require('body-parser'),
-	session = require('express-session'),
-	passport = require('passport'),
-	mongoose = require('mongoose'),
+	cookieParser = require('cookie-parser'),
+	Mongoose = require('mongoose'),
 	dbConfig = require('./config/db'),
-	morgan = require('morgan');
+	session = require('express-session'),
+	MongoStore = require('connect-mongo')(session),
+	morgan = require('morgan'),
+	apiRoutes = require('./routes/apiRoutes'),
+	path = require('path'),
+	helmet = require('helmet');
 
-// require('./config/passport')(passport);
+global.app = app;
 
-// mongoose.connect(dbConfig.url);
+global.dbConnection = Mongoose.connect(dbConfig.url, function (err) {
+	err ? console.error('db connection problem') : console.log('db connected');
+});
 
+app.set('superSecret', dbConfig.secret);
 app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, './views'));
 
+app.use(helmet());
 app.use(morgan('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({
+	limit: '52428800',
+	extended: true
+}));
+app.use(bodyParser.json({
+	limit: '52428800'
+}));
+app.use(cookieParser());
+
 app.use(session({
+	store: new MongoStore({
+		mongooseConnection: global.dbConnection.connection,
+		collection: 'sessions'
+	}),
 	resave: false,
 	saveUninitialized: true,
-	secret: 'LoveMyWifeVictoria'
+	secret: dbConfig.secret
 }));
-app.use(passport.initialize());
-app.use(passport.session());
 
-require('./config/routes.js')(app, passport);
+app.use('/api', apiRoutes);
+
+app.get('/', function (req, res) {
+	res.render('pages/index');
+});
 
 app.listen(port, function () {
 	console.log(`Server has started on port ${port}`);
