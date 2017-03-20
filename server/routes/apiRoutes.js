@@ -26,9 +26,17 @@ apiRoutes
 
 			if (user && user.isPasswordRight(req.body.password)) {
 				req.session.user = user;
-				res.redirect('/api/myaccount');
+				res.json({
+					status: 'Ok',
+					code: 200,
+					message: 'Successfully authenticated'
+				});
 			} else {
-				res.redirect('/api/login');
+				res.json({
+					status: 'Fail',
+					code: 403,
+					message: 'Wrong username and/or password.'
+				});
 			}
 		});
 	})
@@ -44,7 +52,12 @@ apiRoutes
 		newUser.save(function (err) {
 
 			if (err) throw err;
-			res.redirect('/api/myaccount');
+			req.session.user = newUser;
+			res.json({
+				status: 'Ok',
+				code: 200,
+				message: 'Successfully registered'
+			});
 		});
 	})
 	.get('/myaccount', checkLoggedIn, function (req, res) {

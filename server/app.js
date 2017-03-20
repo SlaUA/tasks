@@ -32,6 +32,7 @@ app.use(bodyParser.json({
 	limit: '52428800'
 }));
 app.use(cookieParser());
+// app.use(express.static(path.join(__dirname, '/static/')));
 
 app.use(session({
 	store: new MongoStore({
