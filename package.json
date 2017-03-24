@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server --content-base build/ --inline --hot",
     "build": "webpack",
-    "go": "node"
+    "server": "node server/app"
   },
   "author": "Slava Lubenets wenzelua@gmail.com",
   "license": "ISC",
