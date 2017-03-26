@@ -8,12 +8,17 @@ let mongoose = require('mongoose'),
 		},
 		passwordHash: String,
 		salt: String,
-		admin: Boolean
+		todos: [
+			{
+				type: Schema.Types.ObjectId,
+				ref: 'Todo'
+			}
+		]
 	}),
 	User;
 
 userSchema.methods.isPasswordRight = function (password) {
-
+	
 	return User.sha512(password, this.salt) === this.passwordHash;
 };
 
@@ -23,10 +28,10 @@ userSchema.methods.isPasswordRight = function (password) {
  * @param {number} [length] - Length of the random string.
  */
 userSchema.statics.makeSalt = function (length) {
-
+	
 	return crypto.randomBytes(Math.ceil((length || 16) / 2))
-		.toString('hex') /** convert to hexadecimal format */
-		.slice(0, length);
+	             .toString('hex') /** convert to hexadecimal format */
+	             .slice(0, length);
 };
 
 /**
@@ -36,10 +41,10 @@ userSchema.statics.makeSalt = function (length) {
  * @param {string} salt - Data to be validated.
  */
 userSchema.statics.sha512 = function (password, salt) {
-
+	
 	let hash = crypto.createHmac('sha512', salt);
 	hash.update(password);
-
+	
 	return hash.digest('hex');
 };
 
@@ -52,11 +57,11 @@ userSchema.statics.sha512 = function (password, salt) {
 // }
 
 userSchema.virtual('password')
-	.set(function (password) {
-
-		this.salt = User.makeSalt();
-		this.passwordHash = User.sha512(password, this.salt);
-	});
+          .set(function (password) {
+	
+	          this.salt = User.makeSalt();
+	          this.passwordHash = User.sha512(password, this.salt);
+          });
 
 User = mongoose.model('User', userSchema);
 

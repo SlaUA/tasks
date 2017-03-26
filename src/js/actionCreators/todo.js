@@ -3,22 +3,37 @@ import * as spinnerActions from '../constants/loadSpinner';
 import {push} from 'react-router-redux';
 import asyncService from '../helpers/asyncService';
 
-const API_KEY = 'pfierzS-glRRmq0xpPRCIli60atyuuNm';
-const API_HOST = 'https://api.mlab.com/api/1/databases/mytasklist/collections/tasks';
+const API_HOST = '/api';
+
+function checkLoggedIn() {
+	
+	return;
+}
 
 export function loadTodos() {
 	return (dispatch) => {
-
+		
 		dispatch({
 			type: spinnerActions.SHOW_SPINNER
 		});
-
+		
 		asyncService
-			.get(`${API_HOST}?apiKey=${API_KEY}`)
-			.then(data => dispatch({
-				type: todoActions.LOADED_ALL_TODOS,
-				payload: JSON.parse(data)
-			}))
+			.get(`${API_HOST}/todos`)
+			.then(data => {
+				
+				let parsedData;
+				
+				try {
+					parsedData = JSON.parse(data).todos || [];
+				} catch (e) {
+					parsedData = [];
+				}
+				
+				dispatch({
+					type: todoActions.LOADED_ALL_TODOS,
+					payload: parsedData
+				})
+			})
 			.then(() => dispatch({
 				type: spinnerActions.HIDE_SPINNER
 			}))
@@ -27,13 +42,13 @@ export function loadTodos() {
 
 export function onDeleteTodo(todo) {
 	return function (dispatch) {
-
+		
 		dispatch({
 			type: spinnerActions.SHOW_SPINNER
 		});
-
+		
 		asyncService
-			.del(`${API_HOST}/${todo._id}?apiKey=${API_KEY}`)
+			.del(`${API_HOST}/${todo._id}`)
 			.then(data => dispatch({
 				type: todoActions.DELETE_TODO,
 				payload: todo.id
@@ -46,20 +61,20 @@ export function onDeleteTodo(todo) {
 
 export function onAddTodo(text) {
 	return function (dispatch) {
-
+		
 		dispatch({
 			type: spinnerActions.SHOW_SPINNER
 		});
-
+		
 		asyncService
-			.post(`${API_HOST}?apiKey=${API_KEY}`, {
+			.post(`${API_HOST}`, {
 				id: Date.now(),
 				text: (text || 'Новая задача'),
 				isDone: false
 			}).then(data => dispatch({
-			type: todoActions.ADD_TODO,
-			payload: JSON.parse(data)
-		}))
+				type: todoActions.ADD_TODO,
+				payload: JSON.parse(data)
+			}))
 			.then(() => dispatch({
 				type: spinnerActions.HIDE_SPINNER
 			}));
@@ -68,20 +83,20 @@ export function onAddTodo(text) {
 
 export function onShowTodoInfo(id) {
 	return function (dispatch) {
-
+		
 		dispatch(push('/todo/' + id));
 	}
 }
 
 export function onToggleTodo(todo) {
 	return function (dispatch) {
-
+		
 		dispatch({
 			type: spinnerActions.SHOW_SPINNER
 		});
-
+		
 		asyncService
-			.put(`${API_HOST}/${todo._id}?apiKey=${API_KEY}`, {$set: {isDone: !todo.isDone}})
+			.put(`${API_HOST}/${todo._id}`, {$set: {isDone: !todo.isDone}})
 			.then(data => dispatch({
 				type: todoActions.TOGGLE_TODO,
 				payload: todo.id
@@ -94,13 +109,13 @@ export function onToggleTodo(todo) {
 
 export function onChangeTodo(todo) {
 	return function (dispatch) {
-
+		
 		dispatch({
 			type: spinnerActions.SHOW_SPINNER
 		});
-
+		
 		asyncService
-			.put(`${API_HOST}/${todo._id}?apiKey=${API_KEY}`, {
+			.put(`${API_HOST}/${todo._id}`, {
 				$set: {
 					isDone: todo.isDone,
 					text: todo.text
@@ -120,15 +135,15 @@ export function onChangeTodo(todo) {
 }
 
 export function onDeleteAllTodos() {
-
+	
 	return function (dispatch) {
-
+		
 		dispatch({
 			type: spinnerActions.SHOW_SPINNER
 		});
-
+		
 		asyncService
-			.put(`${API_HOST}?apiKey=${API_KEY}`, [])
+			.put(`${API_HOST}`, [])
 			.then(() => {
 				dispatch({
 					type: todoActions.DELETE_ALL_TODOS
@@ -142,15 +157,15 @@ export function onDeleteAllTodos() {
 
 export function onDoneAllTodos(todos) {
 	return function (dispatch) {
-
+		
 		dispatch({
 			type: spinnerActions.SHOW_SPINNER
 		});
-
+		
 		asyncService
-			.put(`${API_HOST}?apiKey=${API_KEY}`, todos.map((todo)=> ({
+			.put(`${API_HOST}`, todos.map((todo) => ({
 				...todo,
-				isDone:true
+				isDone: true
 			})))
 			.then(() => {
 				dispatch({

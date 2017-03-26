@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import LoadSpinner from '../components/loadSpinner';
 import App from '../containers/app';
 import AboutTodo from '../containers/aboutTodo';
+import Page404 from '../containers/page404';
 import {Route} from 'react-router-dom';
 
 class WholeContainer extends Component {
@@ -27,6 +28,7 @@ class WholeContainer extends Component {
                 </div>
                 <Route exact path="/" component={App}/>
                 <Route path="/todo/:id" component={AboutTodo}/>
+                <Route path="*" component={Page404}/>
             </div>
         );
     }
@@ -39,8 +41,10 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const mapStateToProps = (state) => {
+    debugger;
     return {
-        isVisible: state.spinnerReducer.isVisible
+        isVisible: state.spinnerReducer.isVisible,
+        isLoggedIn: state.authReducer.isLoggedIn
     }
 };
 

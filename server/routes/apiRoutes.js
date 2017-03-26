@@ -7,38 +7,40 @@ function checkLoggedIn(req, res, next) {
 	if (req.session.user) {
 		next();
 	} else {
-		res.redirect('/api/login');
+		res.json({
+			status: '',
+			code: 301,
+			message: 'Please log in or create new account'
+		});
 	}
 }
 
 apiRoutes
-	.get('/login', function (req, res) {
-
-		res.render('pages/loginForm');
-	})
 	.post('/login', function (req, res) {
 
-		User.findOne({username: req.body.username}, function (err, user) {
-
-			if (err) {
-				throw err;
-			}
-
-			if (user && user.isPasswordRight(req.body.password)) {
-				req.session.user = user;
-				res.json({
-					status: 'Ok',
-					code: 200,
-					message: 'Successfully authenticated'
-				});
-			} else {
-				res.json({
-					status: 'Fail',
-					code: 403,
-					message: 'Wrong username and/or password.'
-				});
-			}
-		});
+		console.log(req.body);
+		res.send('ok');
+		//User.findOne({username: req.body.username}, function (err, user) {
+		//
+		//	if (err) {
+		//		throw err;
+		//	}
+		//
+		//	if (user && user.isPasswordRight(req.body.password)) {
+		//		req.session.user = user;
+		//		res.json({
+		//			status: 'Ok',
+		//			code: 200,
+		//			message: 'Successfully authenticated'
+		//		});
+		//	} else {
+		//		res.json({
+		//			status: 'Fail',
+		//			code: 403,
+		//			message: 'Wrong username and/or password.'
+		//		});
+		//	}
+		//});
 	})
 	.post('/register', function (req, res) {
 
@@ -60,9 +62,9 @@ apiRoutes
 			});
 		});
 	})
-	.get('/myaccount', checkLoggedIn, function (req, res) {
+	.get('/todos', checkLoggedIn, function (req, res) {
 
-		res.render('pages/myaccount', {user: req.session.user});
+		res.json([]);
 	});
 
 module.exports = apiRoutes;

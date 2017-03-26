@@ -32,8 +32,7 @@ app.use(bodyParser.json({
 	limit: '52428800'
 }));
 app.use(cookieParser());
-// app.use(express.static(path.join(__dirname, '/static/')));
-
+app.use(express.static(path.join(__dirname, '../build')));
 app.use(session({
 	store: new MongoStore({
 		mongooseConnection: global.dbConnection.connection,
@@ -46,8 +45,8 @@ app.use(session({
 
 app.use('/api', apiRoutes);
 
-app.get('/', function (req, res) {
-	res.render('pages/index');
+app.get('*', function (req, res) {
+	res.sendFile(path.join(__dirname, '../build/index.html'));
 });
 
 app.listen(port, function () {
