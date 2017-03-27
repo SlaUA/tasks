@@ -20,7 +20,6 @@ global.dbConnection = Mongoose.connect(dbConfig.url, function (err) {
 
 app.set('superSecret', dbConfig.secret);
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, './views'));
 
 app.use(helmet());
 app.use(morgan('dev'));
@@ -46,6 +45,7 @@ app.use(session({
 app.use('/api', apiRoutes);
 
 app.get('*', function (req, res) {
+    console.log('HTML');
 	res.sendFile(path.join(__dirname, '../build/index.html'));
 });
 

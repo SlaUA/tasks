@@ -5,11 +5,6 @@ import asyncService from '../helpers/asyncService';
 
 const API_HOST = '/api';
 
-function checkLoggedIn() {
-	
-	return;
-}
-
 export function loadTodos() {
 	return (dispatch) => {
 		

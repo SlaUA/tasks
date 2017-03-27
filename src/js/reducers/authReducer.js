@@ -1,47 +1,51 @@
 import * as authActions from '../constants/authActions';
 
-function getCookie(cookieName) {
-	
-	let name = cookieName + '=';
-	let decodedCookie = decodeURIComponent(document.cookie);
-	let ca = decodedCookie.split(';');
-	for (let i = 0; i < ca.length; i++) {
-		let c = ca[i];
-		while (c.charAt(0) === ' ') {
-			c = c.substring(1);
-		}
-		if (c.indexOf(name) === 0) {
-			return c.substring(name.length, c.length);
-		}
-	}
-	return '';
-}
-
 let initialState = {
-	isLoggedIn: Boolean(getCookie('x-user')),
-	user: null
-};
+    loginField: '',
+    passwordField: '',
+    isLoggedIn: false,
+    user: null
+}, user;
 
-initialState.user = initialState.isLoggedIn ? JSON.parse(getCookie('x-user')) : null;
+try {
+    user = JSON.parse(window.cookies.get('x-user'));
+    initialState.isLoggedIn = true;
+} catch (e) {}
 
 export default (state = initialState, action) => {
-	
-	switch (action.type) {
-		
-		case authActions.LOGGED_IN_SUCCESSFULLY:
-			return {
-				...state,
-				user: action.payload.user,
-				isLoggedIn: true
-			};
-		
-		case authActions.REGISTERED_SUCCESFULLY:
-			
-			return {
-				...state,
-				newTodoText: ''
-			};
-		default:
-			return state;
-	}
+
+    switch (action.type) {
+
+        case authActions.LOGGED_IN_SUCCESSFULLY:
+            return {
+                ...state,
+                user: action.payload.user,
+                isLoggedIn: true
+            };
+
+        case authActions.REGISTERED_SUCCESSFULLY:
+
+            return {
+                ...state,
+                user: action.payload.user,
+                isLoggedIn: true
+            };
+
+        case authActions.LOGIN_FIELD_CHANGE:
+
+            return {
+                ...state,
+                loginField: action.payload
+            };
+
+        case authActions.PASSWORD_FIELD_CHANGE:
+
+            return {
+                ...state,
+                passwordField: action.payload
+            };
+
+        default:
+            return state;
+    }
 }

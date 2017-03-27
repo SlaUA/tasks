@@ -8,7 +8,7 @@ function checkLoggedIn(req, res, next) {
 		next();
 	} else {
 		res.json({
-			status: '',
+			status: 'Forbidden',
 			code: 301,
 			message: 'Please log in or create new account'
 		});
@@ -16,6 +16,10 @@ function checkLoggedIn(req, res, next) {
 }
 
 apiRoutes
+	.get('/todos', checkLoggedIn, function (req, res) {
+
+		res.json([]);
+	})
 	.post('/login', function (req, res) {
 
 		console.log(req.body);
@@ -61,10 +65,6 @@ apiRoutes
 				message: 'Successfully registered'
 			});
 		});
-	})
-	.get('/todos', checkLoggedIn, function (req, res) {
-
-		res.json([]);
 	});
 
 module.exports = apiRoutes;
