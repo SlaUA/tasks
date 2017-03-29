@@ -1,44 +1,39 @@
-import * as authActions from '../constants/authActions';
+import * as API_CONSTANTS from '../constants/authActions';
 
 let initialState = {
     loginField: '',
     passwordField: '',
-    isLoggedIn: false,
-    user: null
-}, user;
-
-try {
-    user = JSON.parse(window.cookies.get('x-user'));
-    initialState.isLoggedIn = true;
-} catch (e) {}
+    isLoggedIn: Boolean(window.cookies.get(API_CONSTANTS.USERNAME_COOKIE))
+};
 
 export default (state = initialState, action) => {
 
     switch (action.type) {
 
-        case authActions.LOGGED_IN_SUCCESSFULLY:
+        case API_CONSTANTS.LOGGED_IN_SUCCESSFULLY:
+
+            window.cookies.set(API_CONSTANTS.USERNAME_COOKIE, action.payload);
             return {
                 ...state,
-                user: action.payload.user,
                 isLoggedIn: true
             };
 
-        case authActions.REGISTERED_SUCCESSFULLY:
+        case API_CONSTANTS.REGISTERED_SUCCESSFULLY:
 
+            window.cookies.set(API_CONSTANTS.USERNAME_COOKIE, action.payload);
             return {
                 ...state,
-                user: action.payload.user,
                 isLoggedIn: true
             };
 
-        case authActions.LOGIN_FIELD_CHANGE:
+        case API_CONSTANTS.LOGIN_FIELD_CHANGE:
 
             return {
                 ...state,
                 loginField: action.payload
             };
 
-        case authActions.PASSWORD_FIELD_CHANGE:
+        case API_CONSTANTS.PASSWORD_FIELD_CHANGE:
 
             return {
                 ...state,

@@ -1,0 +1,58 @@
+.authWrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.authWrapper:after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: -1;
+}
+
+.authButtonsWrapper {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.loginBtn {
+    margin-right: 5px;
+}
+
+.authButton {
+    color: #6496c8;
+    background: rgba(0, 0, 0, 0);
+    border: solid 2px #6496c8;
+    font-size: 24px;
+    font-family: Arial, sans-serif;
+    width: 95px;
+    text-align: center;
+}
+
+.loginWrapper,
+.passwordWrapper {
+    width: 100%;
+    justify-content: center;
+    display: flex;
+}
+
+.username, .password {
+    width: calc(200px - 10px);
+    height: 20px;
+    padding-left: 10px;
+    font-family: 'Bad Script', cursive;
+    font-size: 20px;
+}
+
+.passwordWrapper,
+.authButtonsWrapper {
+    margin-top: 10px;
+}
+

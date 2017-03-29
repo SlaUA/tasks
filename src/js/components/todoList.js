@@ -6,7 +6,7 @@ import Todo from './todo';
 import '../../styles/todoList.css';
 
 export default class TodoList extends Component {
-	
+
 	render() {
 		const {onDeleteTodo, onShowTodoInfo, onToggleTodo} = this.props;
 		const todos = this.props.todos.map((todo, index) => {
@@ -22,7 +22,7 @@ export default class TodoList extends Component {
 				      onDeleteTodo={onDeleteTodo}/>
 			)
 		});
-		
+
 		return (
 			<div className="todoList">
 				{todos}

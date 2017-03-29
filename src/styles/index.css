@@ -28,6 +28,10 @@ input:focus, textarea:focus, keygen:focus, select:focus {
     height: 100%;
 }
 
+.authenticated-component {
+    height: 100%;
+}
+
 .todoAppWrapper {
     height: 100%;
 }

@@ -12,7 +12,7 @@ const store = storeConfig();
 
 render(
     <Provider store={store}>
-        <ConnectedRouter history={history}>
+        <ConnectedRouter history={history} >
             <Route exact component={WholeContainer}/>
         </ConnectedRouter>
     </Provider>,

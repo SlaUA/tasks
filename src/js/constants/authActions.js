@@ -10,3 +10,8 @@ export const REGISTER_BTN_CLICK = 'REGISTER_BTN_CLICK';
 
 export const LOGIN_FIELD_CHANGE = 'LOGIN_FIELD_CHANGE';
 export const PASSWORD_FIELD_CHANGE = 'PASSWORD_FIELD_CHANGE';
+
+export const API_HOST = '/api';
+export const API_REGISTER = 'register';
+export const API_LOGIN = 'login';
+export const USERNAME_COOKIE = 'x-username';

@@ -8,7 +8,28 @@ class loginRegisterPage extends Component {
 
     registerButtonHandler() {
 
+        this.props.onRegisterBtnClick({
+            username: this.props.loginField,
+            password: this.props.passwordField
+        });
+    }
 
+    loginButtonHandler() {
+
+        this.props.onLoginBtnClick({
+            username: this.props.loginField,
+            password: this.props.passwordField
+        });
+    }
+
+    usernameFieldChangeHandler(e) {
+
+        this.props.onUsernameFieldChange(e.target.value);
+    }
+
+    passwordFieldChangeHandler(e) {
+
+        this.props.onPasswordFieldChange(e.target.value);
     }
 
     render() {
@@ -16,19 +37,23 @@ class loginRegisterPage extends Component {
         return (
             <div className="authWrapper">
                 <div className="loginWrapper">
-                    <input onChange={this.props.onUsernameFieldChange.bind(null, this.value)}
-                           value={this.props.loginField} type="text"
+                    <input className="username" onChange={this.usernameFieldChangeHandler.bind(this)}
+                           value={this.props.loginField}
                            placeholder="username"/>
                 </div>
                 <div className="passwordWrapper">
-                    <input onChange={this.props.onPasswordFieldChange.bind(null, this.value)}
+                    <input className="password"
+                           onChange={this.passwordFieldChangeHandler.bind(this)}
+                           value={this.props.passwordField}
                            type="password" placeholder="password"/>
                 </div>
-                <div onClick={this.props.onLoginBtnClick}
-                     className="loginBtn">Login
-                </div>
-                <div onClick={this.props.onRegisterBtnClick}
-                     className="registerBtn">Register
+                <div className="authButtonsWrapper">
+                    <div onClick={this.loginButtonHandler.bind(this)}
+                         className="loginBtn authButton">Login
+                    </div>
+                    <div onClick={this.registerButtonHandler.bind(this)}
+                         className="registerBtn authButton">Register
+                    </div>
                 </div>
             </div>
         );
@@ -36,7 +61,8 @@ class loginRegisterPage extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    loginField: state.authReducer.loginField
+    loginField: state.authReducer.loginField,
+    passwordField: state.authReducer.passwordField
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -44,7 +70,6 @@ const mapDispatchToProps = (dispatch) => ({
     onPasswordFieldChange: bindActionCreators(authActionCreators.onPasswordFieldChange, dispatch),
     onLoginBtnClick: bindActionCreators(authActionCreators.onLoginBtnClick, dispatch),
     onRegisterBtnClick: bindActionCreators(authActionCreators.onRegisterBtnClick, dispatch)
-
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(loginRegisterPage);

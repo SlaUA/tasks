@@ -25,7 +25,7 @@ export default function requireAuthentication(Component) {
 
         render() {
             return (
-                <div>
+                <div className="authenticated-component">
                     {this.props.isLoggedIn ? <Component {...this.props}/> : null}
                 </div>
             )

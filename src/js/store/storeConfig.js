@@ -28,9 +28,9 @@ function storeConfig(initialState) {
 		rootReducer,
 		initialState,
 		applyMiddleware(
+			routerMiddleware(history),
 			thunk,
-			createLogger(),
-			routerMiddleware(history)
+			createLogger()
 		)
 	)
 }

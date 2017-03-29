@@ -12,12 +12,6 @@ import requireAuthentication from '../containers/authenticatedComponent';
 
 class WholeContainer extends Component {
 
-    componentDidMount() {
-
-        const {onLoadAllTodos} = this.props;
-        onLoadAllTodos();
-    }
-
     render() {
 
         const {isVisibleSpinner} = this.props;
@@ -26,29 +20,26 @@ class WholeContainer extends Component {
             <div className="wholeWrapper">
                 <Switch>
                     <Route exact path="/" component={requireAuthentication(App)}/>
-                    <Route exact path="/api/auth" component={LoginRegisterPage}/>
+                    <Route path="/api/auth" component={LoginRegisterPage}/>
                     <Route path="/api/todo/:id" component={requireAuthentication(AboutTodo)}/>
                     <Route component={Page404}/>
                 </Switch>
-                <div>
-                    {this.props.children}
-                    <LoadSpinner isVisible={isVisibleSpinner}/>
-                </div>
+                {this.props.children}
+                <LoadSpinner isVisible={isVisibleSpinner}/>
             </div>
         );
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapStateToProps = (state) => {
     return {
-        onLoadAllTodos: bindActionCreators(todoActionCreators.loadTodos, dispatch)
+        isVisibleSpinner: state.spinnerReducer.isVisible
     }
 };
 
-const mapStateToProps = (state) => {
-
+const mapDispatchToProps = (dispatch) => {
     return {
-        isVisibleSpinner: state.spinnerReducer.isVisible
+        onLoadAllTodos: bindActionCreators(todoActionCreators.loadTodos, dispatch)
     }
 };
 

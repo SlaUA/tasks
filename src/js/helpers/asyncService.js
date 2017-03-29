@@ -35,6 +35,4 @@ let xhrPromisified = {
     }
 };
 
-window.xhrPromisified = xhrPromisified;
-
 export default xhrPromisified;
