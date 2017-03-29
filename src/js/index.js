@@ -11,10 +11,10 @@ import {ConnectedRouter} from 'react-router-redux';
 const store = storeConfig();
 
 render(
-    <Provider store={store}>
-        <ConnectedRouter history={history} >
-            <Route exact component={WholeContainer}/>
-        </ConnectedRouter>
-    </Provider>,
-    document.getElementById('app')
+	<Provider store={store}>
+		<ConnectedRouter history={history}>
+			<Route exact component={WholeContainer}/>
+		</ConnectedRouter>
+	</Provider>,
+	document.getElementById('app')
 );

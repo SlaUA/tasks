@@ -9,25 +9,6 @@ import TodoListManager from '../components/todoListManager';
 
 class App extends Component {
 
-    componentWillMount() {
-
-        // const {onLoadAllTodos} = this.props;
-        // debugger;
-        // onLoadAllTodos();
-    }
-
-    componentWillReceiveProps(nextProps) {
-
-        // const {onLoadAllTodos} = this.props;
-        //
-        // debugger;
-        // if (this.props.match.url === nextProps.match.url) {
-        //     return;
-        // }
-        //
-        // onLoadAllTodos();
-    }
-
     render() {
 
         const {
