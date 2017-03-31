@@ -20,7 +20,16 @@ function checkLoggedIn(req, res, next) {
 apiRoutes
 	.get('/todos', checkLoggedIn, function (req, res) {
 		
-		res.json([]);
+		Todo.find({creator: req.session.user._id}, function (err, todos) {
+			if (err) {
+				throw err;
+			}
+			res.json({
+				code: 200,
+				message: 'Success',
+				todos: todos
+			});
+		});
 	})
 	.post('/todo', checkLoggedIn, function (req, res) {
 		
