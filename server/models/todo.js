@@ -2,12 +2,12 @@ let mongoose = require('mongoose'),
 	Schema = mongoose.Schema,
 	Todo;
 
-Todo = mongoose.model(new Schema({
+Todo = mongoose.model('Todo', new Schema({
 	id: Number,
 	text: String,
 	isDone: Boolean,
 	creator: {
-		type: Number,
+		type: String,
 		ref: 'User'
 	}
 }));

@@ -1,7 +1,4 @@
 import React, {Component} from 'react';
-import * as todoActionCreators from '../actionCreators/todo';
-import {bindActionCreators} from 'redux';
-import {connect} from 'react-redux';
 import LoadSpinner from '../components/loadSpinner';
 import App from '../containers/app';
 import AboutTodo from '../containers/aboutTodo';
@@ -10,11 +7,9 @@ import LoginRegisterPage from '../containers/loginRegisterPage';
 import {Route, Switch} from 'react-router-dom';
 import requireAuthentication from '../containers/authenticatedComponent';
 
-class WholeContainer extends Component {
+export default class WholeContainer extends Component {
 	
 	render() {
-		
-		const {isVisibleSpinner} = this.props;
 		
 		return (
 			<div className="wholeWrapper">
@@ -25,22 +20,8 @@ class WholeContainer extends Component {
 					<Route component={Page404}/>
 				</Switch>
 				{this.props.children}
-				<LoadSpinner isVisible={isVisibleSpinner}/>
+				<LoadSpinner/>
 			</div>
 		);
 	}
 }
-
-const mapStateToProps = (state) => {
-	return {
-		isVisibleSpinner: state.spinnerReducer.isVisible
-	}
-};
-
-const mapDispatchToProps = (dispatch) => {
-	return {
-		onLoadAllTodos: bindActionCreators(todoActionCreators.loadTodos, dispatch)
-	}
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(WholeContainer);

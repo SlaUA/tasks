@@ -1,24 +1,38 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
 import '../../styles/loadSpinner.css';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as todoActionCreators from '../actionCreators/todo';
 
-export default class LoadSpinner extends Component {
+class LoadSpinner extends Component {
 	
 	render() {
-
-		const {isVisible} = this.props;
-
+		
+		const {isVisibleSpinner} = this.props;
+		
 		return (
-			<div className={"cssload-contain " + (isVisible? "visible":"hidden")}>
+			<div className={"cssload-contain " + (isVisibleSpinner ? "visible" : "hidden")}>
 				<div className="cssload-dot"/>
 				<div className="cssload-dot"/>
 				<div className="cssload-dot"/>
 				<div className="cssload-dot"/>
 				<div className="cssload-dot"/>
 			</div>
-			);
+		);
 	}
 }
 
-LoadSpinner.propTypes = {
-	isVisible: PropTypes.bool.isRequired
+const mapStateToProps = (state) => {
+	return {
+		isVisibleSpinner: state.spinnerReducer.isVisible
+	}
 };
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		onLoadAllTodos: bindActionCreators(todoActionCreators.loadTodos, dispatch)
+	}
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoadSpinner);
+
