@@ -8,8 +8,9 @@ import '../../styles/todoList.css';
 export default class TodoList extends Component {
 
 	render() {
-		const {onDeleteTodo, onShowTodoInfo, onToggleTodo} = this.props;
-		const todos = this.props.todos.map((todo, index) => {
+		const {onDeleteTodo, onShowTodoInfo, onChangeTodo} = this.props,
+		todos = this.props.todos.map((todo, index) => {
+			
 			return (
 				<Todo key={todo.id}
 				      number={index}
@@ -17,7 +18,7 @@ export default class TodoList extends Component {
 				      isDone={todo.isDone}
 				      todoText={todo.text}
 				      onShowTodoInfo={onShowTodoInfo}
-				      onToggleTodo={onToggleTodo}
+				      onChangeTodo={onChangeTodo}
 				      onDeleteTodo={onDeleteTodo}/>
 			)
 		});
@@ -34,5 +35,5 @@ TodoList.propTypes = {
 	todos: PropTypes.array.isRequired,
 	onDeleteTodo: PropTypes.func.isRequired,
 	onShowTodoInfo: PropTypes.func.isRequired,
-	onToggleTodo: PropTypes.func.isRequired
+	onChangeTodo: PropTypes.func.isRequired
 };

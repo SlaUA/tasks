@@ -20,7 +20,7 @@ export default class WholeContainer extends Component {
 					<Route component={Page404}/>
 				</Switch>
 				{this.props.children}
-				<LoadSpinner/>
+				<LoadSpinner />
 			</div>
 		);
 	}

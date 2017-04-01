@@ -7,15 +7,8 @@ let mongoose = require('mongoose'),
 			unique: true
 		},
 		passwordHash: String,
-		salt: String,
-		todos: [
-			{
-				type: Schema.Types.ObjectId,
-				ref: 'Todo'
-			}
-		]
-	}),
-	User;
+		salt: String
+	}), User;
 
 userSchema.methods.isPasswordRight = function (password) {
 	
@@ -48,6 +41,13 @@ userSchema.statics.sha512 = function (password, salt) {
 	return hash.digest('hex');
 };
 
+userSchema.virtual('password')
+          .set(function (password) {
+	
+	          this.salt = User.makeSalt();
+	          this.passwordHash = User.sha512(password, this.salt);
+          });
+
 //save: function (okFn, failedFn) {
 // if (this.isValid()) {
 // 	this.__super__(okFn);
@@ -55,13 +55,6 @@ userSchema.statics.sha512 = function (password, salt) {
 // 	failedFn();
 // }
 // }
-
-userSchema.virtual('password')
-          .set(function (password) {
-	
-	          this.salt = User.makeSalt();
-	          this.passwordHash = User.sha512(password, this.salt);
-          });
 
 User = mongoose.model('User', userSchema);
 

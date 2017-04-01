@@ -1,4 +1,4 @@
 module.exports = {
-	url: 'mongodb://127.0.0.1:27017/todoUsers',
+	url: 'mongodb://127.0.0.1:27017/todosDb',
 	secret: 'loveMyWifeVictoria'
 };

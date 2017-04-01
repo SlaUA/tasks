@@ -24,8 +24,8 @@ export default class Todo extends Component {
 						id={'todoToggle_' + (number + 1)}
 						type="checkbox"
 						className="todoToggle customCheckbox"
-						onChange={this.props.onToggleTodo.bind(null, {
-							isDone: this.props.isDone,
+						onChange={()=>this.props.onChangeTodo({
+							isDone: !this.props.isDone,
 							id: this.props.id
 						})}/>
 					<label className="customCheckboxLabel" htmlFor={'todoToggle_' + (number + 1)}/>
@@ -44,5 +44,5 @@ Todo.propTypes = {
 	number: PropTypes.number.isRequired,
 	onDeleteTodo: PropTypes.func.isRequired,
 	onShowTodoInfo: PropTypes.func.isRequired,
-	onToggleTodo: PropTypes.func.isRequired
+	onChangeTodo: PropTypes.func.isRequired
 };

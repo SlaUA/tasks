@@ -82,10 +82,7 @@ export default (state = initialState, action) => {
 				todos: state.todos
 				            .slice(0, index)
 				            .concat([
-					            Object.assign({}, state.todos[index], {
-						            text: action.payload.text,
-						            isDone: action.payload.isDone
-					            })
+					            Object.assign({}, state.todos[index], action.payload)
 				            ])
 				            .concat(state.todos.slice(index + 1))
 			};

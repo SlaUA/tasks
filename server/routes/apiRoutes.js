@@ -11,7 +11,7 @@ function checkLoggedIn(req, res, next) {
 		res.cookie('x-username', '', {expires: new Date()});
 		res.json({
 			status: 'Forbidden',
-			code: 301,
+			code: 403,
 			message: 'Please log in or create new account'
 		});
 	}
@@ -31,6 +31,8 @@ apiRoutes
 			});
 		});
 	})
+	
+	// post todo
 	.post('/todo', checkLoggedIn, function (req, res) {
 		
 		let newTodo = new Todo({
@@ -56,9 +58,31 @@ apiRoutes
 			});
 		});
 	})
-	.post('/login', function (req, res) {
+	
+	// change particular todo
+	.post('/todo/:id', checkLoggedIn, function (req, res) {
 		
-		console.log(req.body);
+		Todo.update({
+			id: req.params.id,
+			creator: req.session.user._id
+		}, {$set: req.body}, (err) => {
+			
+			if (err) {
+				res.json({
+					status: 'Failed',
+					code: 500,
+					message: 'Internal Server Error'
+				});
+				throw err;
+			}
+			res.json({
+				status: 'Success',
+				code: 200,
+				message: 'Todo has been saved'
+			});
+		});
+	})
+	.post('/login', function (req, res) {
 		
 		User.findOne({username: req.body.username}, function (err, user) {
 			
@@ -76,7 +100,7 @@ apiRoutes
 				});
 			} else {
 				res.json({
-					status: 'Fail',
+					status: 'Failed to authenticate',
 					code: 403,
 					message: 'Wrong username and/or password.'
 				});

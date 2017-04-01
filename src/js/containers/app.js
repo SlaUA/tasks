@@ -21,7 +21,7 @@ class App extends Component {
 			onAddTodo,
 			onShowTodoInfo,
 			onChangeTodoText,
-			onToggleTodo,
+			onChangeTodo,
 			onDeleteAllTodos,
 			onDoneAllTodos,
 			todos,
@@ -34,7 +34,7 @@ class App extends Component {
 				         newTodoText={newTodoText}
 				         onAddTodo={onAddTodo}/>
 				<TodoList
-					onToggleTodo={onToggleTodo}
+					onChangeTodo={onChangeTodo}
 					onShowTodoInfo={onShowTodoInfo}
 					todos={todos}
 					onDeleteTodo={onDeleteTodo}/>
@@ -59,7 +59,7 @@ const mapDispatchToProps = (dispatch) => ({
 	onAddTodo: bindActionCreators(todoActionCreators.onAddTodo, dispatch),
 	onChangeTodoText: bindActionCreators(todoAddActionCreators.onChangeTodoText, dispatch),
 	onShowTodoInfo: bindActionCreators(todoActionCreators.onShowTodoInfo, dispatch),
-	onToggleTodo: bindActionCreators(todoActionCreators.onToggleTodo, dispatch),
+	onChangeTodo: bindActionCreators(todoActionCreators.onChangeTodo, dispatch),
 	onLoadAllTodos: bindActionCreators(todoActionCreators.loadTodos, dispatch)
 });
 
