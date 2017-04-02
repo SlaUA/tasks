@@ -71,7 +71,7 @@ export function onDeleteTodo(todo) {
 		});
 		
 		asyncService
-			.del(`${API_CONSTANTS.API_HOST}/${todo._id}`)
+			.del(`${API_CONSTANTS.API_HOST}/todo/${todo.id}`)
 			.then(data => dispatch({
 				type: TODO_CONSTANTS.DELETE_TODO,
 				payload: todo.id
@@ -97,7 +97,7 @@ export function onChangeTodo(todo, redirectToHP) {
 		});
 		
 		asyncService
-			.post(`${API_CONSTANTS.API_HOST}/todo/${todo.id}`, todo)
+			.put(`${API_CONSTANTS.API_HOST}/todo/${todo.id}`, todo)
 			.then((data) => {
 				
 				switch (data.code) {
@@ -134,7 +134,7 @@ export function onDeleteAllTodos() {
 		});
 		
 		asyncService
-			.put(`${API_CONSTANTS.API_HOST}`, [])
+			.del(`${API_CONSTANTS.API_HOST}/todos`, {})
 			.then(() => {
 				dispatch({
 					type: TODO_CONSTANTS.DELETE_ALL_TODOS
@@ -154,10 +154,7 @@ export function onDoneAllTodos(todos) {
 		});
 		
 		asyncService
-			.put(`${API_CONSTANTS.API_HOST}`, todos.map((todo) => ({
-				...todo,
-				isDone: true
-			})))
+			.put(`${API_CONSTANTS.API_HOST}/todos`)
 			.then(() => {
 				dispatch({
 					type: TODO_CONSTANTS.DONE_ALL_TODOS

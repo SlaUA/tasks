@@ -60,7 +60,7 @@ apiRoutes
 	})
 	
 	// change particular todo
-	.post('/todo/:id', checkLoggedIn, function (req, res) {
+	.put('/todo/:id', checkLoggedIn, function (req, res) {
 		
 		Todo.update({
 			id: req.params.id,
@@ -82,6 +82,78 @@ apiRoutes
 			});
 		});
 	})
+	
+	// delete particular todo
+	.delete('/todo/:id', checkLoggedIn, function (req, res) {
+		
+		Todo.findOneAndRemove({
+			id: req.params.id,
+			creator: req.session.user._id
+		}, {$set: req.body}, (err) => {
+			
+			if (err) {
+				res.json({
+					status: 'Failed',
+					code: 500,
+					message: 'Internal Server Error'
+				});
+				throw err;
+			}
+			res.json({
+				status: 'Success',
+				code: 200,
+				message: 'Todo has been removed'
+			});
+		});
+	})
+	
+	// delete all todos
+	.delete('/todos', checkLoggedIn, function (req, res) {
+		
+		Todo.remove({}, (err) => {
+			
+			if (err) {
+				res.json({
+					status: 'Failed',
+					code: 500,
+					message: 'Internal Server Error'
+				});
+				throw err;
+			}
+			res.json({
+				status: 'Success',
+				code: 200,
+				message: 'Todos has been removed'
+			});
+		});
+	})
+	
+	// done all todos
+	.put('/todos', checkLoggedIn, function (req, res) {
+		
+		Todo.update({}, {
+			$set: {
+				isDone: true
+			}
+		}, {multi: true}, (err) => {
+			
+			if (err) {
+				res.json({
+					status: 'Failed',
+					code: 500,
+					message: 'Internal Server Error'
+				});
+				throw err;
+			}
+			res.json({
+				status: 'Success',
+				code: 200,
+				message: 'Todos have been updated'
+			});
+		});
+	})
+	
+	// login handler
 	.post('/login', function (req, res) {
 		
 		User.findOne({username: req.body.username}, function (err, user) {
@@ -107,6 +179,8 @@ apiRoutes
 			}
 		});
 	})
+	
+	// register handler
 	.post('/register', function (req, res) {
 		
 		let newUser = new User({
@@ -147,3 +221,5 @@ apiRoutes
 	});
 
 module.exports = apiRoutes;
+
+
