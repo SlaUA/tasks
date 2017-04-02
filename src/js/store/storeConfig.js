@@ -4,6 +4,7 @@ import addTodoReducer from '../reducers/addTodo';
 import aboutTodoReducer from '../reducers/aboutTodo';
 import spinnerReducer from '../reducers/loadSpinner';
 import authReducer from '../reducers/authReducer';
+import messagesIndicatorReducer from '../reducers/messagesIndicator';
 import {routerMiddleware, routerReducer} from 'react-router-redux';
 import thunk from 'redux-thunk';
 import createHistory from 'history/createBrowserHistory';
@@ -16,6 +17,7 @@ import {
 const history = createHistory();
 const rootReducer = combineReducers({
 	authReducer,
+	messagesIndicatorReducer,
 	addTodoReducer,
 	todoAppReducer,
 	aboutTodoReducer,

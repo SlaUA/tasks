@@ -1,0 +1,30 @@
+.page404Container:after {
+    display: block;
+    background-color: #010080;
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.page404Container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    color: white;
+    font-family: 'Lucida Console', sans-serif;
+}
+
+.page404Container p {
+    margin-bottom: 12px;
+    width: 100%;
+}
+
+.page404Container a {
+    color: white;
+}
