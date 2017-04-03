@@ -10,14 +10,14 @@ class messagesIndicator extends Component {
 	render() {
 		
 		const messages = this.props.messages.map((item, i) => {
-			return <div key={item.id} onClick={() => this.props.onMessageRemove(i)}>
+			return <div className="message" key={item.id} onClick={() => this.props.onMessageRemove(i)}>
 				{item.text}
 			</div>
 		});
 		
 		return (
 			<div className="messagesIndicatorWrapper">
-				<ReactCSSTransitionGroup
+				<ReactCSSTransitionGroup className="messagesWrapper"
 					transitionName="messageIndicator"
 					transitionAppear={true}
 					transitionAppearTimeout={500}
@@ -35,7 +35,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => {
-	window.addMessage = bindActionCreators(indicatorActors.onMessageAdd, dispatch);
+	window.onMessageAdd = bindActionCreators(indicatorActors.onMessageAdd, dispatch);
 	return {
 		onMessageAdd: bindActionCreators(indicatorActors.onMessageAdd, dispatch),
 		onMessageRemove: bindActionCreators(indicatorActors.onMessageRemove, dispatch)
