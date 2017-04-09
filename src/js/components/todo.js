@@ -1,7 +1,7 @@
 import React, {
-	PropTypes,
 	Component
 } from 'react';
+import PropTypes from  'prop-types';
 import '../../styles/todo.css';
 
 export default class Todo extends Component {

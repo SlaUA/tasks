@@ -1,7 +1,7 @@
 import React, {
-	PropTypes,
 	Component
 } from 'react';
+import PropTypes from  'prop-types';
 import Todo from './todo';
 import '../../styles/todoList.css';
 

@@ -1,11 +1,11 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import * as apiActionCreators from '../actionCreators/api';
 import {bindActionCreators} from 'redux';
 
 export default function requireAuthentication(Component) {
 	
-	class AuthenticatedComponent extends React.Component {
+	class AuthenticatedComponent extends Component {
 		
 		componentWillMount() {
 			this.checkAuth();
