@@ -14,7 +14,9 @@ let express = require('express'),
 
 global.app = app;
 
-global.dbConnection = Mongoose.connect(dbConfig.url, function (err) {
+Mongoose.Promise = global.Promise;
+
+global.dbConnection = Mongoose.connect(dbConfig.cloudUrl, function (err) {
     err ? console.error('db connection problem') : console.log('db connected');
 });
 
