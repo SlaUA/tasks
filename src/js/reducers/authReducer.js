@@ -17,6 +17,14 @@ export default (state = initialState, action) => {
                 ...state,
                 isLoggedIn: true
             };
+            
+	    case API_CONSTANTS.LOGGED_OUT_USER:
+      
+		    window.cookies.set(API_CONSTANTS.USERNAME_COOKIE, '', {expires: -1});
+		    return {
+			    ...state,
+			    isLoggedIn: false
+		    };
 
         case API_CONSTANTS.REGISTERED_SUCCESSFULLY:
 

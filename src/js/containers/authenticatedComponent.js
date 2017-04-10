@@ -7,11 +7,12 @@ export default function requireAuthentication(Component) {
 	
 	class AuthenticatedComponent extends Component {
 		
-		componentWillMount() {
+		componentWillReceiveProps() {
+			debugger;
 			this.checkAuth();
 		}
 		
-		componentWillReceiveProps() {
+		componentWillMount() {
 			this.checkAuth();
 		}
 		

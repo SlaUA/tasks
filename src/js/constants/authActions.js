@@ -1,8 +1,7 @@
 export const REGISTERED_SUCCESSFULLY = 'REGISTERED_SUCCESSFULLY';
-export const REGISTRATION_FAILED = 'REGISTRATION_FAILED';
-
 export const LOGGED_IN_SUCCESSFULLY = 'LOGGED_IN_SUCCESSFULLY';
-export const LOGIN_FAILED = 'LOGIN_FAILED';
+
+export const LOGGED_OUT_USER = 'LOGGED_OUT_USER';
 
 export const LOGIN_FIELD_CHANGE = 'LOGIN_FIELD_CHANGE';
 export const PASSWORD_FIELD_CHANGE = 'PASSWORD_FIELD_CHANGE';
@@ -12,6 +11,5 @@ export const API_REGISTER = 'register';
 export const API_LOGIN = 'login';
 export const USERNAME_COOKIE = 'x-username';
 
-export const SUCCESS_CODE = 200;
 export const ERROR_CODE = 500;
 export const NOT_AUTHORIZED_CODE = 403;

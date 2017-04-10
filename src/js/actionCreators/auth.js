@@ -1,5 +1,4 @@
 import {push} from 'react-router-redux';
-import xhr from '../helpers/asyncService';
 import * as API_CONSTANTS from '../constants/authActions';
 import * as SPINNER_CONSTANTS from '../constants/loadSpinner';
 
@@ -29,25 +28,19 @@ export function onLoginBtnClick(userForm) {
 			type: SPINNER_CONSTANTS.SHOW_SPINNER
 		});
 		
-		xhr.post(`${API_CONSTANTS.API_HOST}/${API_CONSTANTS.API_LOGIN}`, userForm)
-		   .then(function (data) {
+		window.xhr.post(`${API_CONSTANTS.API_HOST}/${API_CONSTANTS.API_LOGIN}`, userForm)
+		      .then(function (data) {
 			
-			   if (data.code === API_CONSTANTS.SUCCESS_CODE) {
-				   dispatch({
-					   type: API_CONSTANTS.LOGGED_IN_SUCCESSFULLY,
-					   payload: data.payload
-				   });
-				   dispatch(push('/'));
-			   } else {
-				   dispatch({
-					   type: API_CONSTANTS.LOGIN_FAILED,
-					   payload: data.message
-				   });
-			   }
-		   })
-		   .then(() => dispatch({
-			   type: SPINNER_CONSTANTS.HIDE_SPINNER
-		   }));
+			      dispatch({
+				      type: API_CONSTANTS.LOGGED_IN_SUCCESSFULLY,
+				      payload: data.payload
+			      });
+			      dispatch(push('/'));
+		      })
+		      .finally(() =>
+			      dispatch({
+				      type: SPINNER_CONSTANTS.HIDE_SPINNER
+			      }));
 	}
 }
 
@@ -58,25 +51,19 @@ export function onRegisterBtnClick(userForm) {
 			type: SPINNER_CONSTANTS.SHOW_SPINNER
 		});
 		
-		xhr.post(`${API_CONSTANTS.API_HOST}/${API_CONSTANTS.API_REGISTER}`, userForm)
-		   .then(function (data) {
+		window.xhr.post(`${API_CONSTANTS.API_HOST}/${API_CONSTANTS.API_REGISTER}`, userForm)
+		      .then(function (data) {
 			
-			   if (data.code === API_CONSTANTS.SUCCESS_CODE) {
-				   dispatch({
-					   type: API_CONSTANTS.REGISTERED_SUCCESSFULLY,
-					   payload: data.payload
-				   });
-				   dispatch(push('/'));
-			   } else {
-				   dispatch({
-					   type: API_CONSTANTS.REGISTRATION_FAILED,
-					   payload: data.message
-				   });
-			   }
-		   })
-		   .then(() => dispatch({
-			   type: SPINNER_CONSTANTS.HIDE_SPINNER
-		   }));
+			      dispatch({
+				      type: API_CONSTANTS.REGISTERED_SUCCESSFULLY,
+				      payload: data.payload
+			      });
+			      dispatch(push('/'));
+		      })
+		      .finally(() =>
+			      dispatch({
+				      type: SPINNER_CONSTANTS.HIDE_SPINNER
+			      }));
 	}
 }
 
