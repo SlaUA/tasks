@@ -8,7 +8,6 @@ export default function requireAuthentication(Component) {
 	class AuthenticatedComponent extends Component {
 		
 		componentWillReceiveProps() {
-			debugger;
 			this.checkAuth();
 		}
 		
