@@ -15,7 +15,7 @@ export function loadTodos() {
 		      .then(data =>
 			      dispatch({
 				      type: TODO_CONSTANTS.LOADED_ALL_TODOS,
-				      payload: data.todos || []
+				      payload: data.payload || []
 			      }))
 		      .finally(() => {
 			      dispatch({

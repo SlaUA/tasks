@@ -1,4 +1,5 @@
 let express = require('express'),
+	API_CONSTANTS = require('../constants/api'),
 	apiRoutes = express.Router(),
 	User = require('../models/user'),
 	Todo = require('../models/todo');
@@ -10,8 +11,7 @@ function checkLoggedIn(req, res, next) {
 	} else {
 		res.cookie('x-username', '', {expires: new Date()});
 		res.json({
-			status: 'Forbidden',
-			code: 401,
+			code: API_CONSTANTS.NOT_AUTHORIZED_CODE,
 			message: 'Please log in or create new account'
 		});
 	}
@@ -25,9 +25,9 @@ apiRoutes
 				throw err;
 			}
 			res.json({
-				code: 200,
-				message: 'Success',
-				todos: todos
+				code: API_CONSTANTS.OK_CODE,
+				message: API_CONSTANTS.OK_MESSAGE,
+				payload: todos
 			});
 		});
 	})
@@ -45,15 +45,13 @@ apiRoutes
 		newTodo.save(function (err) {
 			if (err) {
 				res.json({
-					status: 'Failed',
-					code: 403,
-					message: 'Internal Server Error'
+					code: API_CONSTANTS.ERROR_CODE,
+					message: API_CONSTANTS.ERROR_MESSAGE
 				});
 				throw err;
 			}
 			res.json({
-				status: 'Success',
-				code: 200,
+				code: API_CONSTANTS.OK_CODE,
 				message: 'Todo has been saved'
 			});
 		});
@@ -69,15 +67,13 @@ apiRoutes
 			
 			if (err) {
 				res.json({
-					status: 'Failed',
-					code: 403,
-					message: 'Internal Server Error'
+					code: API_CONSTANTS.ERROR_CODE,
+					message: API_CONSTANTS.ERROR_MESSAGE
 				});
 				throw err;
 			}
 			res.json({
-				status: 'Success',
-				code: 200,
+				code: API_CONSTANTS.OK_CODE,
 				message: 'Todo has been saved'
 			});
 		});
@@ -93,15 +89,13 @@ apiRoutes
 			
 			if (err) {
 				res.json({
-					status: 'Failed',
-					code: 403,
-					message: 'Internal Server Error'
+					code: API_CONSTANTS.ERROR_CODE,
+					message: API_CONSTANTS.ERROR_MESSAGE
 				});
 				throw err;
 			}
 			res.json({
-				status: 'Success',
-				code: 200,
+				code: API_CONSTANTS.OK_CODE,
 				message: 'Todo has been removed'
 			});
 		});
@@ -114,15 +108,13 @@ apiRoutes
 			
 			if (err) {
 				res.json({
-					status: 'Failed',
-					code: 403,
-					message: 'Internal Server Error'
+					code: API_CONSTANTS.ERROR_CODE,
+					message: API_CONSTANTS.ERROR_MESSAGE
 				});
 				throw err;
 			}
 			res.json({
-				status: 'Success',
-				code: 200,
+				code: API_CONSTANTS.OK_CODE,
 				message: 'Todos has been removed'
 			});
 		});
@@ -139,15 +131,13 @@ apiRoutes
 			
 			if (err) {
 				res.json({
-					status: 'Failed',
-					code: 403,
-					message: 'Internal Server Error'
+					code: API_CONSTANTS.ERROR_CODE,
+					message: API_CONSTANTS.ERROR_MESSAGE
 				});
 				throw err;
 			}
 			res.json({
-				status: 'Success',
-				code: 200,
+				code: API_CONSTANTS.OK_CODE,
 				message: 'Todos have been updated'
 			});
 		});
@@ -165,15 +155,13 @@ apiRoutes
 			if (user && user.isPasswordRight(req.body.password)) {
 				req.session.user = user;
 				res.json({
-					status: 'Ok',
-					code: 200,
+					code: API_CONSTANTS.OK_CODE,
 					message: 'Successfully authenticated',
 					payload: user.username
 				});
 			} else {
 				res.json({
-					status: 'Failed to authenticate',
-					code: 403,
+					code: API_CONSTANTS.ERROR_CODE,
 					message: 'Wrong username and/or password.'
 				});
 			}
@@ -196,8 +184,7 @@ apiRoutes
 			if (!err) {
 				req.session.user = newUser;
 				return res.json({
-					status: 'Ok',
-					code: 200,
+					code: API_CONSTANTS.OK_CODE,
 					message: 'Successfully registered',
 					payload: newUser.username
 				});
@@ -205,15 +192,13 @@ apiRoutes
 			
 			if (err.code === ALREADY_REGISTERED_USER) {
 				res.json({
-					status: 'Failed',
-					code: 403,
+					code: API_CONSTANTS.ERROR_CODE,
 					message: 'Username already taken'
 				});
 			} else {
 				res.json({
-					status: 'Failed',
-					code: 403,
-					message: 'Internal Server Error'
+					code: API_CONSTANTS.ERROR_CODE,
+					message: API_CONSTANTS.ERROR_MESSAGE
 				});
 				throw err;
 			}
