@@ -11,7 +11,7 @@ function checkLoggedIn(req, res, next) {
 		res.cookie('x-username', '', {expires: new Date()});
 		res.json({
 			status: 'Forbidden',
-			code: 403,
+			code: 401,
 			message: 'Please log in or create new account'
 		});
 	}
@@ -46,7 +46,7 @@ apiRoutes
 			if (err) {
 				res.json({
 					status: 'Failed',
-					code: 500,
+					code: 403,
 					message: 'Internal Server Error'
 				});
 				throw err;
@@ -70,7 +70,7 @@ apiRoutes
 			if (err) {
 				res.json({
 					status: 'Failed',
-					code: 500,
+					code: 403,
 					message: 'Internal Server Error'
 				});
 				throw err;
@@ -94,7 +94,7 @@ apiRoutes
 			if (err) {
 				res.json({
 					status: 'Failed',
-					code: 500,
+					code: 403,
 					message: 'Internal Server Error'
 				});
 				throw err;
@@ -115,7 +115,7 @@ apiRoutes
 			if (err) {
 				res.json({
 					status: 'Failed',
-					code: 500,
+					code: 403,
 					message: 'Internal Server Error'
 				});
 				throw err;
@@ -140,7 +140,7 @@ apiRoutes
 			if (err) {
 				res.json({
 					status: 'Failed',
-					code: 500,
+					code: 403,
 					message: 'Internal Server Error'
 				});
 				throw err;
@@ -206,13 +206,13 @@ apiRoutes
 			if (err.code === ALREADY_REGISTERED_USER) {
 				res.json({
 					status: 'Failed',
-					code: 500,
+					code: 403,
 					message: 'Username already taken'
 				});
 			} else {
 				res.json({
 					status: 'Failed',
-					code: 500,
+					code: 403,
 					message: 'Internal Server Error'
 				});
 				throw err;
