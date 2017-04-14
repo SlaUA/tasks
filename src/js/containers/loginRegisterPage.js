@@ -47,13 +47,18 @@ class loginRegisterPage extends Component {
 				<div className="loginWrapper">
 					<input className="username" onChange={this.usernameFieldChangeHandler.bind(this)}
 					       value={this.props.loginField}
-					       placeholder="username"/>
+					       placeholder="username"
+					       required/>
+					<error className="usernameError" />
 				</div>
 				<div className="passwordWrapper">
 					<input className="password"
 					       onChange={this.passwordFieldChangeHandler.bind(this)}
 					       value={this.props.passwordField}
-					       type="password" placeholder="password"/>
+					       type="password"
+					       placeholder="password"
+					       required/>
+					<error className="passwordError" />
 				</div>
 				<div className="authButtonsWrapper">
 					<div onClick={this.loginButtonHandler.bind(this)}
@@ -70,6 +75,7 @@ class loginRegisterPage extends Component {
 
 const mapStateToProps = (state) => ({
 	loginField: state.authReducer.loginField,
+	errors: state.authReducer.errors,
 	passwordField: state.authReducer.passwordField,
 	isLoggedIn: state.authReducer.isLoggedIn
 });
