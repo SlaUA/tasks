@@ -12,9 +12,54 @@ function checkLoggedIn(req, res, next) {
 		res.cookie('x-username', '', {expires: new Date()});
 		res.json({
 			code: API_CONSTANTS.NOT_AUTHORIZED_CODE,
-			message: 'Please log in or create new account'
+			message: 'Авторизуйтесь или зарегистрируйтесь'
 		});
 	}
+}
+
+function validateUserInput(req, res, next) {
+	
+	req.body.username = req.sanitizeBody('username').escape().trim();
+	req.body.password = req.sanitizeBody('password').escape().trim();
+	
+	req.checkBody({
+		username: {
+			notEmpty: true,
+			isLength: {
+				options: [{ min: 5, max: 10 }],
+				errorMessage: 'Логин должен содерхать от 5 до 10 символов'
+			},
+			errorMessage: 'Неверный логин и/или пароль'
+		},
+		password: {
+			notEmpty: true,
+			isLength: {
+				options: [{ min: 6, max: 10 }],
+				errorMessage: 'Пароль должен содерхать от 6 до 10 символов'
+			},
+			matches: {
+				options: [/example/i],
+				errorMessage: 'example!'
+			},
+			errorMessage: 'Неверный логин и/или пароль'
+		}
+	});
+	
+	req.getValidationResult().then(function (result) {
+		
+		console.log(result.mapped());
+		
+		if (result.isEmpty()) {
+			return next();
+		}
+		
+		res.json({
+			code: API_CONSTANTS.ERROR_CODE,
+			message: API_CONSTANTS.ERROR_MESSAGE,
+			payload: result
+		});
+	});
+	
 }
 
 apiRoutes
@@ -52,7 +97,7 @@ apiRoutes
 			}
 			res.json({
 				code: API_CONSTANTS.OK_CODE,
-				message: 'Todo has been saved'
+				message: 'Todo успешно сохранено'
 			});
 		});
 	})
@@ -74,7 +119,7 @@ apiRoutes
 			}
 			res.json({
 				code: API_CONSTANTS.OK_CODE,
-				message: 'Todo has been saved'
+				message: 'Todo успешно сохранено'
 			});
 		});
 	})
@@ -96,7 +141,7 @@ apiRoutes
 			}
 			res.json({
 				code: API_CONSTANTS.OK_CODE,
-				message: 'Todo has been removed'
+				message: 'Todo успешно удалено'
 			});
 		});
 	})
@@ -115,7 +160,7 @@ apiRoutes
 			}
 			res.json({
 				code: API_CONSTANTS.OK_CODE,
-				message: 'Todos has been removed'
+				message: 'Todo успешно удалены'
 			});
 		});
 	})
@@ -138,13 +183,13 @@ apiRoutes
 			}
 			res.json({
 				code: API_CONSTANTS.OK_CODE,
-				message: 'Todos have been updated'
+				message: 'Todo успешно обновлены'
 			});
 		});
 	})
 	
 	// login handler
-	.post('/login', function (req, res) {
+	.post('/login', validateUserInput, function (req, res) {
 		
 		User.findOne({username: req.body.username}, function (err, user) {
 			
@@ -156,20 +201,20 @@ apiRoutes
 				req.session.user = user;
 				res.json({
 					code: API_CONSTANTS.OK_CODE,
-					message: 'Successfully authenticated',
+					message: 'Успешно авторизирован',
 					payload: user.username
 				});
 			} else {
 				res.json({
 					code: API_CONSTANTS.ERROR_CODE,
-					message: 'Wrong username and/or password.'
+					message: 'Неверный логин и/или пароль'
 				});
 			}
 		});
 	})
 	
 	// register handler
-	.post('/register', function (req, res) {
+	.post('/register', validateUserInput, function (req, res) {
 		
 		let newUser = new User({
 			username: req.body.username,
@@ -185,7 +230,7 @@ apiRoutes
 				req.session.user = newUser;
 				return res.json({
 					code: API_CONSTANTS.OK_CODE,
-					message: 'Successfully registered',
+					message: 'Успешно зарегистрирован',
 					payload: newUser.username
 				});
 			}
@@ -193,7 +238,7 @@ apiRoutes
 			if (err.code === ALREADY_REGISTERED_USER) {
 				res.json({
 					code: API_CONSTANTS.ERROR_CODE,
-					message: 'Username already taken'
+					message: 'Пользователь с таким ником уже существует'
 				});
 			} else {
 				res.json({

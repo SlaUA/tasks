@@ -10,7 +10,8 @@ let express = require('express'),
     morgan = require('morgan'),
     apiRoutes = require('./routes/apiRoutes'),
     path = require('path'),
-    helmet = require('helmet');
+    helmet = require('helmet'),
+	expressValidator = require('express-validator');
 
 global.app = app;
 
@@ -36,6 +37,7 @@ app.use(
         limit: '52428800'
     })
 );
+app.use(expressValidator());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../build')));
 app.use(session({

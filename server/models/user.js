@@ -48,14 +48,6 @@ userSchema.virtual('password')
 	          this.passwordHash = User.sha512(password, this.salt);
           });
 
-//save: function (okFn, failedFn) {
-// if (this.isValid()) {
-// 	this.__super__(okFn);
-// } else {
-// 	failedFn();
-// }
-// }
-
 User = mongoose.model('User', userSchema);
 
 module.exports = User;
