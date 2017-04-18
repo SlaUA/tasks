@@ -11,5 +11,7 @@ export const API_REGISTER = 'register';
 export const API_LOGIN = 'login';
 export const USERNAME_COOKIE = 'x-username';
 
+export const FIELD_VALIDATION = 'FIELD_VALIDATION';
+
 export const ERROR_CODE = 403;
 export const NOT_AUTHORIZED_CODE = 401;

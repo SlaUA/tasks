@@ -31,8 +31,6 @@ function validateUserInput(req, res, next) {
 			return next();
 		}
 		
-		console.log(result.useFirstErrorOnly().array());
-		
 		res.json({
 			code: API_CONSTANTS.ERROR_CODE,
 			message: result.useFirstErrorOnly().array()[0].msg
