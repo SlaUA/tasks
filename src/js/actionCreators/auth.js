@@ -82,12 +82,6 @@ export function onPasswordFieldChange(value) {
 export function onLoginBtnClick(userForm) {
 	return function (dispatch) {
 		
-		// let isValidForm;
-		//
-		// if (!isValidForm) {
-		//     return;
-		// }
-		
 		dispatch({
 			type: SPINNER_CONSTANTS.SHOW_SPINNER
 		});
