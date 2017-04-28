@@ -40,9 +40,11 @@
 .todoText {
     flex-grow: 1;
     padding: 0 5px;
+    cursor: help;
 }
 
 .todoRemove {
     flex-shrink: 0;
     width: 20px;
+    cursor: pointer;
 }

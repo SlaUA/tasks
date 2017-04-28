@@ -1,13 +1,5 @@
 import validate from 'validate.js';
 
-validate.validators.checkForLetter = function (value, options) {
-
-    if (options.pattern.exec(value)) {
-        return;
-    }
-    return options.message;
-};
-
 let validationRules = {
     username: {
         presence: {
@@ -52,4 +44,28 @@ let validationRules = {
     }
 };
 
-module.exports = validationRules;
+validate.validators.checkForLetter = function (value, options) {
+
+    if (options.pattern.exec(value)) {
+        return;
+    }
+    return options.message;
+};
+
+/**
+ * validateFormPart
+ * @param formPart {{}} config with keys from validationRules and values
+ * @returns {{}} errors
+ */
+export default (formPart) => {
+
+    let errors = validate(formPart, validationRules) || {};
+
+    for (let field in validationRules) {
+        if (!validationRules.hasOwnProperty(field) || !errors.hasOwnProperty(field)) {
+            continue;
+        }
+        errors[field] = errors[field] && errors[field][0] || '';
+    }
+    return errors;
+};

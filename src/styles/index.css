@@ -5,7 +5,7 @@ html {
 body {
     background-image: url('../img/noteEffect.png'), url('../img/background.jpg');
     background-repeat: repeat-y, repeat;
-    background-position: 104% top, center;
+    background-position: 100% top, center;
     font-family: 'Bad Script', cursive;
     height: 100%;
     width: 80%;
@@ -43,6 +43,7 @@ input:focus, textarea:focus, keygen:focus, select:focus {
     width: 35px;
     height: 100%;
     position: relative;
+    cursor: pointer;
 }
 
 .customCheckboxLabel:before {
