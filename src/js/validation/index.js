@@ -3,43 +3,43 @@ import validate from 'validate.js';
 let validationRules = {
     username: {
         presence: {
-            message: '^Логин не может быть пустым'
+            message: '^Login can not be empty'
         },
         length: {
             minimum: 5,
             maximum: 10,
-            message: '^Логин должен содерхать от 5 до 10 символов'
+            message: '^Login should contains from 5 to 10 symbols'
         },
         format: {
             // lowercase, uppercase, number
             pattern: /^[a-zA-Z0-9]+$/,
-            message: '^Логин может содержать только латинские буквы (хотя бы одну) и цифры'
+            message: '^Login should contains latin letters (at least 1) and numbers'
         },
         checkForLetter: {
             // lowercase, uppercase, number
             pattern: /[a-zA-Z]+/,
-            message: '^Логин должен содержать хотя бы одну букву'
+            message: '^Login should contains at least 1 letter'
         }
     },
 
     password: {
         presence: {
-            message: '^Пароль не может быть пустым'
+            message: '^Password can not be empty'
         },
         length: {
             minimum: 6,
             maximum: 10,
-            message: '^Пароль должен содерхать от 6 до 10 символов'
+            message: '^Password should contains from 6 to 10 symbols'
         },
         format: {
             // lowercase, uppercase, number
             pattern: /^[a-zA-Z0-9]+$/,
-            message: '^Пароль должен содержать только латинские буквы (хотя бы одну) и цифры'
+            message: '^Password should contains latin letters (at least 1) and numbers'
         },
         checkForLetter: {
             // lowercase, uppercase, number
             pattern: /[a-zA-Z]+/,
-            message: '^Пароль должен содержать хотя бы одну букву'
+            message: '^Password should contains at least 1 letter'
         }
     }
 };

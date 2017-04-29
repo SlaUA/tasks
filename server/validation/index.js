@@ -1,11 +1,11 @@
 module.exports = {
 	username: {
 		notEmpty: {
-			errorMessage: 'Логин не может быть пустым'
+			errorMessage: 'Login can not be empty'
 		},
 		isLength: {
 			options: [{min: 5,max: 10}],
-			errorMessage: 'Логин должен содерхать от 5 до 10 символов'
+			errorMessage: 'Login should contains from 5 to 10 symbols'
 		},
 		matches: {
 			options: [
@@ -13,24 +13,24 @@ module.exports = {
 				/^[a-zA-Z0-9]+$/,
 				/[a-z]/
 			],
-			errorMessage: 'Логин может содержать только латинские буквы (хотя бы одну) и цифры'
+			errorMessage: 'Login should contains latin letters (at least 1) and numbers'
 		}
 	},
 	
 	password: {
 		notEmpty: {
-			errorMessage: 'Пароль не может быть пустым'
+			errorMessage: 'Password can not be empty'
 		},
 		isLength: {
 			options: [{min: 6,max: 10}],
-			errorMessage: 'Пароль должен содерхать от 6 до 10 символов'
+			errorMessage: 'Password should contains from 6 to 10 symbols'
 		},
 		matches: {
 			// lowercase, uppercase, number
 			options: [
 				/^[a-zA-Z0-9]+$/
 			],
-			errorMessage: 'Пароль может содержать только латинские буквы (хотя бы одну) и цифры'
+			errorMessage: 'Password should contains latin letters (at least 1) and numbers'
 		}
 	}
 };
