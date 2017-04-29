@@ -1,5 +1,6 @@
 let path = require('path'),
-    debug = process.env.NODE_ENV !== 'production',
+	config = require('./config'),
+    development = (process.env.NODE_ENV || config.environment) === 'dev',
     webpack = require('webpack'),
     CopyWebpackPlugin = require('copy-webpack-plugin'),
     ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -43,7 +44,7 @@ module.exports = {
             }
         ]
     },
-    plugins: debug ? [
+    plugins: development ? [
         new CopyWebpackPlugin([{
             from: path.join(__dirname, 'src/index.html'),
             to: '../build'
@@ -54,11 +55,25 @@ module.exports = {
         ]),
         new ExtractTextPlugin('bundle.css')
     ] : [
-        new webpack.optimize.DedupePlugin(),
-        new webpack.optimize.OccurenceOrderPlugin(),
+	    new CopyWebpackPlugin([{
+		    from: path.join(__dirname, 'src/index.html'),
+		    to: '../build'
+	    }, {
+		    from: path.join(__dirname, 'src/img/favicon.ico'),
+		    to: '../build'
+	    }
+	    ]),
+	    new ExtractTextPlugin('bundle.css'),
+	    new webpack.optimize.OccurrenceOrderPlugin(),
+	    new webpack.DefinePlugin({
+		    'process.env': {
+			    NODE_ENV: JSON.stringify('production')
+		    }
+	    }),
         new webpack.optimize.UglifyJsPlugin({
             mangle: false,
-            sourcemap: false
+            sourcemap: false,
+	        warnings: false
         })
     ],
 };

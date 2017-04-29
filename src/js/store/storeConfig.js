@@ -1,3 +1,4 @@
+import config from '../../../config';
 import createLogger from 'redux-logger';
 import todoAppReducer from '../reducers/todoApp';
 import addTodoReducer from '../reducers/addTodo';
@@ -14,26 +15,29 @@ import {
 	applyMiddleware
 } from 'redux';
 
-const history = createHistory();
-const rootReducer = combineReducers({
-	authReducer,
-	messagesIndicatorReducer,
-	addTodoReducer,
-	todoAppReducer,
-	aboutTodoReducer,
-	spinnerReducer,
-	router: routerReducer
-});
+const history = createHistory(),
+	development = config.environment !== 'production',
+	rootReducer = combineReducers({
+		authReducer,
+		messagesIndicatorReducer,
+		addTodoReducer,
+		todoAppReducer,
+		aboutTodoReducer,
+		spinnerReducer,
+		router: routerReducer
+	}),
+	middleware = [
+		routerMiddleware(history),
+		thunk
+	];
+
+development && middleware.push(createLogger());
 
 function storeConfig(initialState) {
 	return createStore(
 		rootReducer,
 		initialState,
-		applyMiddleware(
-			routerMiddleware(history),
-			thunk,
-			createLogger()
-		)
+		applyMiddleware(...middleware)
 	)
 }
 
