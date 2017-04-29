@@ -53,7 +53,6 @@ app.use(session({
 app.use('/api', apiRoutes);
 
 app.get('*', function (req, res) {
-    console.log('HTML');
     res.sendFile(path.join(__dirname, '../build/index.html'));
 });
 

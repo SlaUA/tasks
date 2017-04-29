@@ -42,7 +42,7 @@ function xhr(type, url, data, dispatch) {
             case API_CONSTANTS.ERROR_CODE:
 
                 deferred.reject(responseText);
-                console.log(responseText);
+
                 return dispatch({
                     type: INDICATOR_CONSTANTS.ADD_MESSAGE,
                     payload: responseText.message
