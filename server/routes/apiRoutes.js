@@ -13,7 +13,7 @@ function checkLoggedIn(req, res, next) {
 		res.cookie('x-username', '', {expires: new Date()});
 		res.json({
 			code: API_CONSTANTS.NOT_AUTHORIZED_CODE,
-			message: 'Авторизуйтесь или зарегистрируйтесь'
+			message: 'Login or register new account'
 		});
 	}
 }
@@ -73,7 +73,7 @@ apiRoutes
 			}
 			res.json({
 				code: API_CONSTANTS.OK_CODE,
-				message: 'Todo успешно сохранено'
+				message: 'Todo is created'
 			});
 		});
 	})
@@ -95,7 +95,7 @@ apiRoutes
 			}
 			res.json({
 				code: API_CONSTANTS.OK_CODE,
-				message: 'Todo успешно сохранено'
+				message: 'Todo is saved'
 			});
 		});
 	})
@@ -117,7 +117,7 @@ apiRoutes
 			}
 			res.json({
 				code: API_CONSTANTS.OK_CODE,
-				message: 'Todo успешно удалено'
+				message: 'Todo is removed'
 			});
 		});
 	})
@@ -136,7 +136,7 @@ apiRoutes
 			}
 			res.json({
 				code: API_CONSTANTS.OK_CODE,
-				message: 'Todo успешно удалены'
+				message: 'Todos are removed'
 			});
 		});
 	})
@@ -159,7 +159,7 @@ apiRoutes
 			}
 			res.json({
 				code: API_CONSTANTS.OK_CODE,
-				message: 'Todo успешно обновлены'
+				message: 'Todo is updated'
 			});
 		});
 	})
@@ -177,13 +177,13 @@ apiRoutes
 				req.session.user = user;
 				res.json({
 					code: API_CONSTANTS.OK_CODE,
-					message: 'Успешно авторизирован',
+					message: 'Authorized successfully',
 					payload: user.username
 				});
 			} else {
 				res.json({
 					code: API_CONSTANTS.ERROR_CODE,
-					message: 'Неверный логин и/или пароль'
+					message: 'Wrong pair login:password'
 				});
 			}
 		});
@@ -206,7 +206,7 @@ apiRoutes
 				req.session.user = newUser;
 				return res.json({
 					code: API_CONSTANTS.OK_CODE,
-					message: 'Успешно зарегистрирован',
+					message: 'Registered successfully',
 					payload: newUser.username
 				});
 			}
@@ -214,7 +214,7 @@ apiRoutes
 			if (err.code === ALREADY_REGISTERED_USER) {
 				res.json({
 					code: API_CONSTANTS.ERROR_CODE,
-					message: 'Пользователь с таким ником уже существует'
+					message: 'This login is already in use'
 				});
 			} else {
 				res.json({
