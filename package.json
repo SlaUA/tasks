@@ -2,7 +2,7 @@
   "name": "todos",
   "version": "0.0.1",
   "description": "Todo app with react/redux",
-  "main": "webpack.config.js",
+  "main": "server/app",
   "scripts": {
     "start": "webpack -p && node server/app"
   },
