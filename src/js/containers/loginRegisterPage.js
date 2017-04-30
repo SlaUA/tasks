@@ -76,6 +76,8 @@ class loginRegisterPage extends Component {
 					       onChange={this.usernameFieldChangeHandler.bind(this)}
 					       onBlur={this.validateField.bind(this)}
 					       value={this.props.loginField}
+					       autocorrect="off"
+					       autocapitalize="none"
 					       placeholder="username"
 					       required/>
 					<div className={
@@ -93,6 +95,8 @@ class loginRegisterPage extends Component {
 					       onBlur={this.validateField.bind(this)}
 					       value={this.props.passwordField}
 					       type="password"
+					       autocorrect="off"
+					       autocapitalize="none"
 					       placeholder="password"
 					       required/>
 					<div className={

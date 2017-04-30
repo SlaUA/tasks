@@ -30,7 +30,7 @@ export function onAddTodo(text) {
 
         let newTodo = {
             id: Date.now(),
-            text: (text || 'Новая задача'),
+            text: (text || 'New todo!'),
             isDone: false
         };
 

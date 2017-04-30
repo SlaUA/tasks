@@ -10,6 +10,7 @@
 
 .deleteAllTodos, .toggleAllTodos {
     width: 50%;
+    cursor: pointer;
     text-align: center;
     line-height: normal;
     text-overflow: ellipsis;

@@ -34,7 +34,7 @@ class aboutTodo extends Component {
 		
 		return (
 			<div className="aboutWrapper">
-				<div className="aboutHeader">Изменить запись</div>
+				<div className="aboutHeader">Update todo</div>
 				<div className="aboutBody">
 
                     <textarea className="aboutTodoText"
@@ -42,7 +42,7 @@ class aboutTodo extends Component {
                               onChange={this.onChangeText.bind(this)}/>
 					
 					<div className="aboutTodoDone" data-done={isCheckedTodo}>
-						<span>Отметить как выполненную:</span>
+						<span>Mark as done:</span>
 						
 						<input
 							id="aboutIsDone"
@@ -53,7 +53,7 @@ class aboutTodo extends Component {
 					</div>
 					
 					<input type="button"
-					       value="Сохранить"
+					       value="Save"
 					       className="aboutSaveChanges"
 					       onClick={() => this.props.onChangeTodo({
 						       id: todoAbout.id,

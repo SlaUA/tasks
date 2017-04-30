@@ -33,13 +33,13 @@ export default class AddTodo extends Component {
 			<div className="addTodo">
 				<input onKeyDown={this.onInputClick.bind(this)}
 					   className="addTodoText"
-					   placeholder="Текст заметки"
+					   placeholder="Todo text"
 					   onChange={this.onChangeText.bind(this)}
 					   value={newTodoText}
 					   type="text"/>
 				<button className="addTodoButton"
 						onClick={this.onAddTodoClick.bind(this)}>
-					Добавить
+					Add
 				</button>
 			</div>
 		);

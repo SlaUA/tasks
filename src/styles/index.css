@@ -58,7 +58,7 @@ input:focus, textarea:focus, keygen:focus, select:focus {
 }
 
 [data-done="true"] .customCheckboxLabel:after {
-    display: inline-block;
+    display: block;
     align-self: center;
     content: '';
     flex-shrink: 0;
