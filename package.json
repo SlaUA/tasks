@@ -4,8 +4,7 @@
   "description": "Todo app with react/redux",
   "main": "webpack.config.js",
   "scripts": {
-    "build": "NODE_ENV=production webpack -p",
-    "server": "node server/app"
+    "start": "webpack -p && node server/app"
   },
   "author": "Slava Lubenets wenzelua@gmail.com",
   "license": "ISC",
