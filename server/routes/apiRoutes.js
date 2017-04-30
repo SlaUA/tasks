@@ -1,5 +1,7 @@
+const API_CONSTANTS = require('../constants/api'),
+	ALREADY_REGISTERED_USER_CODE = 11000;
+
 let express = require('express'),
-	API_CONSTANTS = require('../constants/api'),
 	apiRoutes = express.Router(),
 	validationOptions = require('../validation'),
 	User = require('../models/user'),
@@ -27,10 +29,12 @@ function validateUserInput(req, res, next) {
 	
 	req.getValidationResult().then(function (result) {
 		
+		// no errors
 		if (result.isEmpty()) {
 			return next();
 		}
 		
+		// returns 1st error
 		res.json({
 			code: API_CONSTANTS.ERROR_CODE,
 			message: result.useFirstErrorOnly().array()[0].msg
@@ -39,6 +43,8 @@ function validateUserInput(req, res, next) {
 }
 
 apiRoutes
+
+// load all todos
 	.get('/todos', checkLoggedIn, function (req, res) {
 		
 		Todo.find({creator: req.session.user._id}, function (err, todos) {
@@ -159,7 +165,7 @@ apiRoutes
 			}
 			res.json({
 				code: API_CONSTANTS.OK_CODE,
-				message: 'Todo is updated'
+				message: 'Todos are updated'
 			});
 		});
 	})
@@ -194,10 +200,8 @@ apiRoutes
 		
 		let newUser = new User({
 			username: req.body.username,
-			password: req.body.password,
-			admin: false
+			password: req.body.password
 		});
-		const ALREADY_REGISTERED_USER = 11000;
 		
 		// save the sample user
 		newUser.save(function (err) {
@@ -211,7 +215,7 @@ apiRoutes
 				});
 			}
 			
-			if (err.code === ALREADY_REGISTERED_USER) {
+			if (err.code === ALREADY_REGISTERED_USER_CODE) {
 				res.json({
 					code: API_CONSTANTS.ERROR_CODE,
 					message: 'This login is already in use'

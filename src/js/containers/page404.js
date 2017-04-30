@@ -14,7 +14,7 @@ export default class aboutTodo extends Component {
 				</p>
 				<p>Technical information:</p>
 				<p>***STOP: 0x00000054</p>
-				<Link to='/'>На главную :)</Link>
+				<Link to='/'>To the homepage</Link>
 			</div>
 		);
 	}

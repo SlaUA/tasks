@@ -1,6 +1,5 @@
 let express = require('express'),
 	app = express(),
-	port = 3000,
 	bodyParser = require('body-parser'),
 	cookieParser = require('cookie-parser'),
 	Mongoose = require('mongoose'),
@@ -12,7 +11,8 @@ let express = require('express'),
 	path = require('path'),
 	helmet = require('helmet'),
 	expressValidator = require('express-validator'),
-	config = require('../config');
+	config = require('../config'),
+	port = config.port;
 
 app.isDevelopment = (process.env.NODE_ENV || config.environment) === 'dev';
 
