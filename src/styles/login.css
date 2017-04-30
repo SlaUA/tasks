@@ -50,6 +50,7 @@
 .username, .password {
     width: 190px;
     height: 20px;
+    line-height: 20px;
     padding-left: 10px;
     font-family: 'Bad Script', cursive;
     font-size: 20px;
