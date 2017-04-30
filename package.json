@@ -2,9 +2,9 @@
   "name": "todos",
   "version": "0.0.1",
   "description": "Todo app with react/redux",
-  "main": "server/app",
+  "main": "server/app.js",
   "scripts": {
-    "start": "node ./node_modules/webpack/bin/webpack -p && node server/app"
+    "start": "node ./node_modules/webpack/bin/webpack.js -p && node server/app.js"
   },
   "author": "Slava Lubenets wenzelua@gmail.com",
   "license": "ISC",
