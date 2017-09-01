@@ -12,7 +12,8 @@ let express = require('express'),
 	helmet = require('helmet'),
 	expressValidator = require('express-validator'),
 	config = require('../config'),
-	port = config.port;
+	port = config.port,
+	compression = require('compression');
 
 app.isDevelopment = (process.env.NODE_ENV || config.environment) === 'dev';
 
@@ -28,6 +29,7 @@ app.set('superSecret', dbConfig.secret);
 app.set('view engine', 'ejs');
 
 app.use(helmet());
+app.use(compression());
 
 app.isDevelopment && app.use(morgan('dev'));
 
